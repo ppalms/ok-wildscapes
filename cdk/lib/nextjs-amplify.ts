@@ -63,7 +63,7 @@ export class NextjsAmplify extends Construct {
               commands: [
                 'cd cdk',
                 'yarn install --frozen-lockfile',
-                'cd..',
+                'cd ..',
                 'yarn install --frozen-lockfile',
               ],
             },
