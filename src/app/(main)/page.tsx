@@ -9,7 +9,7 @@ export default function Home() {
       <Logo className="w-64 sm:w-max sm:max-w-md md:max-w-lg lg:max-w-xl mx-auto" />
       <Hero />
       <Projects />
-      <Testimonials />
+      {/* <Testimonials /> */}
     </>
   );
 }
