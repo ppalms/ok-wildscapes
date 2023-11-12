@@ -61,9 +61,7 @@ export class NextjsAmplify extends Construct {
           phases: {
             preBuild: {
               commands: [
-                'cd cdk',
-                'yarn install --frozen-lockfile',
-                'cd ..',
+                'cd cdk && yarn install --frozen-lockfile && cd ..',
                 'yarn install --frozen-lockfile',
               ],
             },
@@ -76,7 +74,7 @@ export class NextjsAmplify extends Construct {
             files: ['**/*'],
           },
           cache: {
-            paths: ['node_modules/**/*'],
+            paths: ['node_modules/**/*', '.next/cache/**/*'],
           },
         },
       }),
