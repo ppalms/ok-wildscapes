@@ -3,10 +3,10 @@ import { Construct } from 'constructs';
 import * as codebuild from 'aws-cdk-lib/aws-codebuild';
 import {
   App as AmplifyApp,
+  CustomRule,
   GitHubSourceCodeProvider,
-  RedirectStatus,
+  Platform,
 } from '@aws-cdk/aws-amplify-alpha';
-import { CfnApp } from 'aws-cdk-lib/aws-amplify';
 
 interface NextjsAppProps {
   amplifyAppName: string;
@@ -42,19 +42,14 @@ export class NextjsAmplify extends Construct {
   private createAmplifyApp() {
     const amplifyApp = new AmplifyApp(this, 'OkWildscapesAmplifyApp', {
       appName: this.amplifyAppName,
+      platform: Platform.WEB_COMPUTE,
       sourceCodeProvider: new GitHubSourceCodeProvider({
         owner: this.owner,
         repository: this.repository,
         oauthToken: SecretValue.secretsManager(this.githubTokenName),
       }),
       autoBranchDeletion: true,
-      customRules: [
-        {
-          source: '/<*>',
-          target: '/index.html',
-          status: RedirectStatus.NOT_FOUND_REWRITE,
-        },
-      ],
+      customRules: [CustomRule.SINGLE_PAGE_APPLICATION_REDIRECT],
       buildSpec: codebuild.BuildSpec.fromObjectToYaml({
         version: 1,
         frontend: {
@@ -83,8 +78,5 @@ export class NextjsAmplify extends Construct {
     amplifyApp.addBranch(this.branch, {
       stage: 'PRODUCTION',
     });
-
-    const cfnAmplifyApp = amplifyApp.node.defaultChild as CfnApp;
-    cfnAmplifyApp.platform = 'WEB_COMPUTE';
   }
 }
