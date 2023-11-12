@@ -1,6 +1,5 @@
 import { Container } from '@/components/Container';
 import Image from 'next/image';
-import instagramLogo from '../../public/images/logos/instagram-solid.svg';
 
 export function Projects() {
   return (
@@ -29,8 +28,10 @@ export function Projects() {
                 <Image
                   className="w-32 mx-auto"
                   priority
-                  src={instagramLogo}
+                  src="/images/logos/instagram-solid.svg"
                   alt="Instagram logo"
+                  width={32}
+                  height={32}
                 />
                 <span className="script text-2xl sm:text-3xl text-gray-300">
                   @oklahomawildscapes
