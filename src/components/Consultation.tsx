@@ -43,7 +43,7 @@ export function Consultation() {
           <div className="mt-8 flex justify-center">
             <a
               href="mailto:okwildscapes@gmail.com"
-              className="flex items-center rounded-lg bg-indigo-600 px-4 py-2 font-semibold text-white shadow hover:bg-indigo-700"
+              className="flex items-center rounded-lg bg-emerald-600 px-4 py-2 font-semibold text-white shadow hover:bg-emerald-700"
               target="_blank">
               Request a Consultation{' '}
               <ChatBubbleLeftEllipsisIcon className="h-5 w-5 -mr-0.5 ml-2" />
