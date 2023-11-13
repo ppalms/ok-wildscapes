@@ -1,7 +1,7 @@
 import { Inter } from 'next/font/google';
 import clsx from 'clsx';
 
-// import '@/styles/globals.css';
+import '@/styles/globals.css';
 import { type Metadata } from 'next';
 
 const inter = Inter({
@@ -24,16 +24,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    // <html
-    //   lang="en"
-    //   className={clsx('h-full bg-neutral-50 antialiased', inter.variable)}>
-    //   <body className="flex h-full flex-col">
-    //     <div className="flex min-h-full flex-col">{children}</div>
-    //   </body>
-    // </html>
-    <html lang='en'>
-      <body>
-        <div>hello</div>
+    <html
+      lang="en"
+      className={clsx('h-full bg-neutral-50 antialiased', inter.variable)}>
+      <body className="flex h-full flex-col">
+        <div className="flex min-h-full flex-col">{children}</div>
       </body>
     </html>
   );

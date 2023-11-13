@@ -12,7 +12,8 @@
     "cdk": "cdk",
     "build:cjs": "node esbuild.cjs.config.js",
     "package": "conc \"tsc --noEmit\" \"yarn build:cjs\"",
-    "deploy": "yarn package && cdk deploy OkWildscapesStack --profile ok-wildscapes --verbose --output-file outputs.json"
+    "deploy": "yarn package && cdk deploy OkWildscapesStack --profile ok-wildscapes --verbose --output-file outputs.json",
+    "sso": "aws sso login --profile ok-wildscapes"
   },
   "devDependencies": {
     "@types/jest": "^29.5.8",
