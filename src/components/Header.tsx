@@ -103,8 +103,11 @@ export function Header() {
                             <MobileNavLink href="/#projects">
                               Projects
                             </MobileNavLink>
-                            <MobileNavLink href="/#testimonials">
+                            {/* <MobileNavLink href="/#testimonials">
                               Testimonials
+                            </MobileNavLink> */}
+                            <MobileNavLink href="/#consultation">
+                              Consultation
                             </MobileNavLink>
                           </div>
                           {/* TODO <div className="mt-8 flex flex-col gap-4">

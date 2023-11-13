@@ -2,6 +2,7 @@ import { Projects } from '@/components/Projects';
 import { Hero } from '@/components/Hero';
 import { Logo } from '@/components/Logo';
 import { Testimonials } from '@/components/Testimonials';
+import { Consultation } from '@/components/Consultation';
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
       <Hero />
       <Projects />
       {/* <Testimonials /> */}
+      <Consultation />
     </>
   );
 }

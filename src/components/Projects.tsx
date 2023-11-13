@@ -12,16 +12,16 @@ export function Projects() {
             Our Projects
           </h2>
           <p className="mt-4 text-lg text-gray-300">
-            Discover the vibrant, eco-friendly landscapes we've cultivated
+            Discover the vibrant, eco-friendly landscapes we're cultivating
             across Oklahoma! Our gallery is a showcase of our dedication to
             transforming spaces into thriving ecosystems that buzz with life.
           </p>
           <div className="mt-8">
-            <p className="mt-4 text-lg text-gray-300">
+            {/* <p className="mt-4 text-lg text-gray-300">
               Explore our work on Instagram to see how we bring a touch of wild
               to the modern world, one garden at a time.
-            </p>
-            <div className="pt-6 flex items-center justify-center">
+            </p> */}
+            <div className="flex items-center justify-center">
               <a
                 href="https://www.instagram.com/oklahomawildscapes/?utm_source=ig_embed&amp;utm_campaign=loading"
                 target="_blank">
