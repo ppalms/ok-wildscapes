@@ -28,7 +28,7 @@ export function Projects() {
                 <Image
                   className="w-32 mx-auto"
                   priority
-                  src="/images/logos/instagram-solid.svg"
+                  src="images/logos/instagram-solid.svg"
                   alt="Instagram logo"
                   width={32}
                   height={32}
