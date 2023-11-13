@@ -5,7 +5,7 @@ import { Popover } from '@headlessui/react';
 import { AnimatePresence, motion } from 'framer-motion';
 
 import { Container } from '@/components/Container';
-// import { Logomark } from '@/components/Logo';
+import { Logomark } from '@/components/Logo';
 import { NavLinks } from '@/components/NavLinks';
 
 function MenuIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
@@ -56,7 +56,7 @@ export function Header() {
         <Container className="relative z-50 flex justify-between py-8">
           <div className="relative z-10 flex items-center gap-16">
             <Link href="/" aria-label="Home">
-              {/* <Logomark className="h-10 sm:h-12 w-auto" /> */}
+              <Logomark className="h-10 sm:h-12 w-auto" />
             </Link>
             <div className="hidden lg:flex lg:gap-10">
               <NavLinks />
