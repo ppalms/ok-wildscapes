@@ -24,13 +24,14 @@ export class AppStack extends cdk.Stack {
 
     super(scope, id, stackProps);
 
-    new AmplifyNextjs(this, 'OkWildscapesNextJs', {
-      amplifyAppName: amplifyAppName,
-      owner: owner,
-      repository: repository,
-      branch: branch,
-      githubTokenName: githubTokenName,
-    });
+    // TODO shut down pre-existing Amplify app
+    // new AmplifyNextjs(this, 'OkWildscapesNextJs', {
+    //   amplifyAppName: amplifyAppName,
+    //   owner: owner,
+    //   repository: repository,
+    //   branch: branch,
+    //   githubTokenName: githubTokenName,
+    // });
 
     new PublicApi(this, 'OkWildscapesPublicApi');
   }
