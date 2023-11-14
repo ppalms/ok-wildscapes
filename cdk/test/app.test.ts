@@ -1,6 +1,6 @@
 import * as cdk from 'aws-cdk-lib';
 import { Template } from 'aws-cdk-lib/assertions';
-import { AppStack } from '../lib/app-stack';
+import { AppStack } from '../stacks/app-stack';
 
 test('Amplify App Created', () => {
   const app = new cdk.App();

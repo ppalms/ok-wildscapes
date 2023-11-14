@@ -1,6 +1,7 @@
 import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
-import { NextjsAmplify } from './nextjs-amplify';
+import { AmplifyNextjs } from '../constructs/amplify-nextjs';
+import { PublicApi } from '../constructs/public-api';
 
 export interface AppStackProps extends cdk.StackProps {
   amplifyAppName: string;
@@ -23,12 +24,14 @@ export class AppStack extends cdk.Stack {
 
     super(scope, id, stackProps);
 
-    new NextjsAmplify(this, 'OkWildscapesHostingStack', {
+    new AmplifyNextjs(this, 'OkWildscapesNextJs', {
       amplifyAppName: amplifyAppName,
       owner: owner,
       repository: repository,
       branch: branch,
       githubTokenName: githubTokenName,
     });
+
+    new PublicApi(this, 'OkWildscapesPublicApi');
   }
 }
