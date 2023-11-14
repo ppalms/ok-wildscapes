@@ -8,6 +8,7 @@ export class PublicApi extends Construct {
   constructor(scope: Construct, id: string) {
     super(scope, id);
 
+    // https://docs.powertools.aws.dev/lambda/typescript/latest/
     const powertoolsLayer = lambda.LayerVersion.fromLayerVersionArn(
       this,
       'PowertoolsLayer',
