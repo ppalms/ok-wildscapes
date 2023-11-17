@@ -10,7 +10,7 @@ new AppStack(app, 'OkWildscapesStack', {
   repository: 'ok-wildscapes',
   branch: 'main',
   githubTokenName: 'ok-wildscapes-cicd-token',
-  env: { account: '311541930391', region: 'us-east-1' },
+  env: { account: '311541930391', region: 'us-east-1' }
 });
 
 app.synth();
