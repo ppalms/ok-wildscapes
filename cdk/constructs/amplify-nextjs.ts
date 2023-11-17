@@ -16,7 +16,7 @@ interface NextjsAppProps {
   githubTokenName: string;
 }
 
-export class NextjsAmplify extends Construct {
+export class AmplifyNextjs extends Construct {
   private readonly amplifyAppName: string;
   private readonly owner: string;
   private readonly repository: string;
@@ -39,6 +39,7 @@ export class NextjsAmplify extends Construct {
     this.createAmplifyApp();
   }
 
+  // TODO add env vars for api url and key
   private createAmplifyApp() {
     const amplifyApp = new AmplifyApp(this, 'OkWildscapesAmplifyApp', {
       appName: this.amplifyAppName,

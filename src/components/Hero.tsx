@@ -22,7 +22,8 @@ function BackgroundIllustration(props: React.ComponentPropsWithoutRef<'div'>) {
         viewBox="0 0 1026 1026"
         fill="none"
         aria-hidden="true"
-        className="absolute inset-0 h-full w-full animate-spin-slow">
+        className="absolute inset-0 h-full w-full animate-spin-slow"
+      >
         <path
           d="M1025 513c0 282.77-229.23 512-512 512S1 795.77 1 513 230.23 1 513 1s512 229.23 512 512Z"
           stroke="#D4D4D4"
@@ -40,7 +41,8 @@ function BackgroundIllustration(props: React.ComponentPropsWithoutRef<'div'>) {
             y1="513"
             x2="1"
             y2="1025"
-            gradientUnits="userSpaceOnUse">
+            gradientUnits="userSpaceOnUse"
+          >
             <stop stopColor="#06b6d4" />
             <stop offset="1" stopColor="#06b6d4" stopOpacity="0" />
           </linearGradient>
@@ -50,7 +52,8 @@ function BackgroundIllustration(props: React.ComponentPropsWithoutRef<'div'>) {
         viewBox="0 0 1026 1026"
         fill="none"
         aria-hidden="true"
-        className="absolute inset-0 h-full w-full animate-spin-reverse-slower">
+        className="absolute inset-0 h-full w-full animate-spin-reverse-slower"
+      >
         <path
           d="M913 513c0 220.914-179.086 400-400 400S113 733.914 113 513s179.086-400 400-400 400 179.086 400 400Z"
           stroke="#D4D4D4"
@@ -68,7 +71,8 @@ function BackgroundIllustration(props: React.ComponentPropsWithoutRef<'div'>) {
             y1="513"
             x2="913"
             y2="913"
-            gradientUnits="userSpaceOnUse">
+            gradientUnits="userSpaceOnUse"
+          >
             <stop stopColor="#06b6d4" />
             <stop offset="1" stopColor="#06b6d4" stopOpacity="0" />
           </linearGradient>
@@ -97,7 +101,7 @@ export function Hero() {
       <Container className="relative">
         <div className="mx-auto max-w-xl sm:text-center">
           <h1 className="font-display text-3xl font-bold tracking-tight text-gray-900">
-            Bring your outdoor space to life
+            Bring Your Outdoor Space to Life
           </h1>
           <p className="mt-6 text-lg text-gray-600">
             Our landscaping company specializes in wildscaping, creating

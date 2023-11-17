@@ -1,8 +1,9 @@
 *.js
-!.config.js
+!*.config.js
 *.d.ts
 esbuild.out/
 
 # CDK asset staging directory
 .cdk.staging
 cdk.out
+output.json
