@@ -4,27 +4,17 @@ import * as apigateway from 'aws-cdk-lib/aws-apigateway';
 import * as logs from 'aws-cdk-lib/aws-logs';
 import * as iam from 'aws-cdk-lib/aws-iam';
 import * as dynamodb from 'aws-cdk-lib/aws-dynamodb';
-import path = require('path');
 import { Construct } from 'constructs';
+import * as path from 'path';
 
 export interface PublicApiProps {
   table: dynamodb.Table;
 }
 
 export class PublicRestApi extends Construct {
-  private api: apigateway.RestApi;
-  private table: dynamodb.Table;
-  private powertoolsLambdaLayer: lambda.ILayerVersion;
-
   constructor(scope: Construct, id: string, props: PublicApiProps) {
     super(scope, id);
 
-    this.table = props.table;
-    this.initializeApi();
-    this.addConsultationRequest();
-  }
-
-  private initializeApi() {
     const apiLoggingRole = new iam.Role(this, 'ApiGatewayRole', {
       assumedBy: new iam.ServicePrincipal('apigateway.amazonaws.com'),
       managedPolicies: [
@@ -32,25 +22,25 @@ export class PublicRestApi extends Construct {
           this,
           'ApiGatewayLoggingPolicy',
           'arn:aws:iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs'
-        )
-      ]
+        ),
+      ],
     });
 
     const account = new apigateway.CfnAccount(this, 'ApiGatewayAccount', {
-      cloudWatchRoleArn: apiLoggingRole.roleArn
+      cloudWatchRoleArn: apiLoggingRole.roleArn,
     });
 
     const apiGatewayLogGroup = new logs.LogGroup(this, 'ApiGatewayLogGroup', {
-      retention: logs.RetentionDays.ONE_WEEK
+      retention: logs.RetentionDays.ONE_WEEK,
     });
 
-    this.api = new apigateway.RestApi(this, 'PublicApi', {
+    const api = new apigateway.RestApi(this, 'PublicApi', {
       restApiName: 'Public API',
       deployOptions: {
         accessLogDestination: new apigateway.LogGroupLogDestination(
           apiGatewayLogGroup
         ),
-        accessLogFormat: apigateway.AccessLogFormat.jsonWithStandardFields()
+        accessLogFormat: apigateway.AccessLogFormat.jsonWithStandardFields(),
       },
       defaultCorsPreflightOptions: {
         allowOrigins: apigateway.Cors.ALL_ORIGINS,
@@ -59,39 +49,37 @@ export class PublicRestApi extends Construct {
           'Content-Type',
           'X-Amz-Date',
           'Authorization',
-          'X-Api-Key'
-        ]
-      }
+          'X-Api-Key',
+        ],
+      },
     });
 
-    this.api.node.addDependency(account);
+    api.node.addDependency(account);
 
-    const publicKey = this.api.addApiKey('PublicApiKey', {
-      description: 'Public API key for unauthenticated users'
+    const publicKey = api.addApiKey('PublicApiKey', {
+      description: 'Public API key for unauthenticated users',
     });
 
-    const publicUsagePlan = this.api.addUsagePlan('PublicUsagePlan', {
+    const publicUsagePlan = api.addUsagePlan('PublicUsagePlan', {
       name: 'Public Usage Plan',
-      apiStages: [{ stage: this.api.deploymentStage }],
+      apiStages: [{ stage: api.deploymentStage }],
       throttle: {
         rateLimit: 10,
-        burstLimit: 2
-      }
+        burstLimit: 2,
+      },
     });
 
     publicUsagePlan.addApiKey(publicKey);
 
     // https://docs.powertools.aws.dev/lambda/typescript/latest/
-    this.powertoolsLambdaLayer = lambda.LayerVersion.fromLayerVersionArn(
+    const powertoolsLambdaLayer = lambda.LayerVersion.fromLayerVersionArn(
       this,
       'PowertoolsLayer',
       `arn:aws:lambda:${
         cdk.Stack.of(this).region
       }:094274105915:layer:AWSLambdaPowertoolsTypeScript:23`
     );
-  }
 
-  private addConsultationRequest() {
     const requestConsultation = new lambda.Function(
       this,
       'RequestConsultation',
@@ -100,27 +88,27 @@ export class PublicRestApi extends Construct {
           path.join('esbuild.out', 'requestConsultation')
         ),
         handler: 'requestConsultation.handler',
-        layers: [this.powertoolsLambdaLayer],
+        layers: [powertoolsLambdaLayer],
         runtime: lambda.Runtime.NODEJS_18_X,
         architecture: lambda.Architecture.ARM_64,
         environment: {
-          APP_TABLE_NAME: this.table.tableName,
-          POWERTOOLS_SERVICE_NAME: 'requestConsultation'
-        }
+          APP_TABLE_NAME: props.table.tableName,
+          POWERTOOLS_SERVICE_NAME: 'requestConsultation',
+        },
       }
     );
 
-    this.table.grantReadData(requestConsultation);
-    this.table.grantWriteData(requestConsultation);
+    props.table.grantReadData(requestConsultation);
+    props.table.grantWriteData(requestConsultation);
 
     const consultationRequestIntegration = new apigateway.LambdaIntegration(
       requestConsultation
     );
 
-    this.api.root
+    api.root
       .addResource('consultation-request')
       .addMethod('POST', consultationRequestIntegration, {
-        apiKeyRequired: true
+        apiKeyRequired: true,
       });
   }
 }
