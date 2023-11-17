@@ -1,9 +1,9 @@
-import { useId } from 'react'
+import { useId } from 'react';
 
 export function GridPattern(
-  props: Omit<React.ComponentPropsWithoutRef<'pattern'>, 'id'>,
+  props: Omit<React.ComponentPropsWithoutRef<'pattern'>, 'id'>
 ) {
-  let patternId = useId()
+  const patternId = useId();
 
   return (
     <svg aria-hidden="true" className="absolute inset-0 h-full w-full">
@@ -20,5 +20,5 @@ export function GridPattern(
       </defs>
       <rect width="100%" height="100%" fill={`url(#${patternId})`} />
     </svg>
-  )
+  );
 }

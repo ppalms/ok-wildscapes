@@ -22,16 +22,16 @@ export class PublicRestApi extends Construct {
           this,
           'ApiGatewayLoggingPolicy',
           'arn:aws:iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs'
-        ),
-      ],
+        )
+      ]
     });
 
     const account = new apigateway.CfnAccount(this, 'ApiGatewayAccount', {
-      cloudWatchRoleArn: apiLoggingRole.roleArn,
+      cloudWatchRoleArn: apiLoggingRole.roleArn
     });
 
     const apiGatewayLogGroup = new logs.LogGroup(this, 'ApiGatewayLogGroup', {
-      retention: logs.RetentionDays.ONE_WEEK,
+      retention: logs.RetentionDays.ONE_WEEK
     });
 
     const api = new apigateway.RestApi(this, 'PublicApi', {
@@ -40,7 +40,7 @@ export class PublicRestApi extends Construct {
         accessLogDestination: new apigateway.LogGroupLogDestination(
           apiGatewayLogGroup
         ),
-        accessLogFormat: apigateway.AccessLogFormat.jsonWithStandardFields(),
+        accessLogFormat: apigateway.AccessLogFormat.jsonWithStandardFields()
       },
       defaultCorsPreflightOptions: {
         allowOrigins: apigateway.Cors.ALL_ORIGINS,
@@ -49,15 +49,15 @@ export class PublicRestApi extends Construct {
           'Content-Type',
           'X-Amz-Date',
           'Authorization',
-          'X-Api-Key',
-        ],
-      },
+          'X-Api-Key'
+        ]
+      }
     });
 
     api.node.addDependency(account);
 
     const publicKey = api.addApiKey('PublicApiKey', {
-      description: 'Public API key for unauthenticated users',
+      description: 'Public API key for unauthenticated users'
     });
 
     const publicUsagePlan = api.addUsagePlan('PublicUsagePlan', {
@@ -65,8 +65,8 @@ export class PublicRestApi extends Construct {
       apiStages: [{ stage: api.deploymentStage }],
       throttle: {
         rateLimit: 10,
-        burstLimit: 2,
-      },
+        burstLimit: 2
+      }
     });
 
     publicUsagePlan.addApiKey(publicKey);
@@ -93,8 +93,8 @@ export class PublicRestApi extends Construct {
         architecture: lambda.Architecture.ARM_64,
         environment: {
           APP_TABLE_NAME: props.table.tableName,
-          POWERTOOLS_SERVICE_NAME: 'requestConsultation',
-        },
+          POWERTOOLS_SERVICE_NAME: 'requestConsultation'
+        }
       }
     );
 
@@ -108,7 +108,7 @@ export class PublicRestApi extends Construct {
     api.root
       .addResource('consultation-request')
       .addMethod('POST', consultationRequestIntegration, {
-        apiKeyRequired: true,
+        apiKeyRequired: true
       });
   }
 }

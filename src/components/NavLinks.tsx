@@ -5,13 +5,13 @@ import Link from 'next/link';
 import { AnimatePresence, motion } from 'framer-motion';
 
 export function NavLinks() {
-  let [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  let timeoutRef = useRef<number | null>(null);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const timeoutRef = useRef<number | null>(null);
 
   return [
     ['Projects', '/#projects'],
     // ['Testimonials', '/#testimonials'],
-    ['Consultation', '/#consultation'],
+    ['Consultation', '/#consultation']
     // ['FAQs', '/#faqs'],
   ].map(([label, href], index) => (
     <Link
@@ -28,7 +28,8 @@ export function NavLinks() {
         timeoutRef.current = window.setTimeout(() => {
           setHoveredIndex(null);
         }, 200);
-      }}>
+      }}
+    >
       <AnimatePresence>
         {hoveredIndex === index && (
           <motion.span
@@ -38,7 +39,7 @@ export function NavLinks() {
             animate={{ opacity: 1, transition: { duration: 0.15 } }}
             exit={{
               opacity: 0,
-              transition: { duration: 0.15 },
+              transition: { duration: 0.15 }
             }}
           />
         )}

@@ -291,7 +291,8 @@ export default function RequestConsultation() {
                                 className="text-sm text-red-600"
                                 role="alert"
                               >
-                                This field is required
+                                Please include some details about what you hope
+                                to achieve
                               </span>
                             )}
                           {errors.message &&
