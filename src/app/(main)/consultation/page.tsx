@@ -44,7 +44,7 @@ export default function RequestConsultation() {
 
       setSent(true);
     } catch (e) {
-      console.log(e);
+      // TODO add notification component
     } finally {
       setSending(false);
     }

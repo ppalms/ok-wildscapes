@@ -6,6 +6,7 @@ import {
   CustomRule,
   GitHubSourceCodeProvider,
   Platform,
+  RedirectStatus
 } from '@aws-cdk/aws-amplify-alpha';
 
 interface NextjsAppProps {
@@ -14,6 +15,7 @@ interface NextjsAppProps {
   repository: string;
   branch: string;
   githubTokenName: string;
+  apiBaseUrl: string;
 }
 
 export class AmplifyNextjs extends Construct {
@@ -22,6 +24,7 @@ export class AmplifyNextjs extends Construct {
   private readonly repository: string;
   private readonly branch: string;
   private readonly githubTokenName: string;
+  private readonly apiBaseUrl: string;
 
   constructor(scope: Construct, id: string, props: NextjsAppProps) {
     super(scope, id);
@@ -31,6 +34,7 @@ export class AmplifyNextjs extends Construct {
     this.repository = props.repository;
     this.branch = props.branch;
     this.githubTokenName = props.githubTokenName;
+    this.apiBaseUrl = props.apiBaseUrl;
 
     this.initialize();
   }
@@ -39,7 +43,6 @@ export class AmplifyNextjs extends Construct {
     this.createAmplifyApp();
   }
 
-  // TODO add env vars for api url and key
   private createAmplifyApp() {
     const amplifyApp = new AmplifyApp(this, 'OkWildscapesAmplifyApp', {
       appName: this.amplifyAppName,
@@ -47,10 +50,19 @@ export class AmplifyNextjs extends Construct {
       sourceCodeProvider: new GitHubSourceCodeProvider({
         owner: this.owner,
         repository: this.repository,
-        oauthToken: SecretValue.secretsManager(this.githubTokenName),
+        oauthToken: SecretValue.secretsManager(this.githubTokenName)
       }),
+      environmentVariables: {
+        NEXT_PUBLIC_API_BASE_URL: this.apiBaseUrl
+      },
       autoBranchDeletion: true,
-      customRules: [CustomRule.SINGLE_PAGE_APPLICATION_REDIRECT],
+      customRules: [
+        new CustomRule({
+          source: '/<*>',
+          target: 'index.html',
+          status: RedirectStatus.NOT_FOUND_REWRITE
+        })
+      ],
       buildSpec: codebuild.BuildSpec.fromObjectToYaml({
         version: 1,
         frontend: {
@@ -58,26 +70,26 @@ export class AmplifyNextjs extends Construct {
             preBuild: {
               commands: [
                 'cd cdk && yarn install --frozen-lockfile && cd ..',
-                'yarn install --frozen-lockfile',
-              ],
+                'yarn install --frozen-lockfile'
+              ]
             },
             build: {
-              commands: ['yarn build'],
-            },
+              commands: ['yarn build']
+            }
           },
           artifacts: {
             baseDirectory: '.next',
-            files: ['**/*'],
+            files: ['**/*']
           },
           cache: {
-            paths: ['node_modules/**/*', '.next/cache/**/*'],
-          },
-        },
-      }),
+            paths: ['node_modules/**/*', '.next/cache/**/*']
+          }
+        }
+      })
     });
 
     amplifyApp.addBranch(this.branch, {
-      stage: 'PRODUCTION',
+      stage: 'PRODUCTION'
     });
   }
 }

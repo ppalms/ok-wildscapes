@@ -12,6 +12,8 @@ export interface PublicApiProps {
 }
 
 export class PublicRestApi extends Construct {
+  public baseUrl: string;
+
   constructor(scope: Construct, id: string, props: PublicApiProps) {
     super(scope, id);
 
@@ -54,6 +56,8 @@ export class PublicRestApi extends Construct {
       }
     });
 
+    this.baseUrl = api.url;
+
     api.node.addDependency(account);
 
     const publicKey = api.addApiKey('PublicApiKey', {
@@ -87,7 +91,7 @@ export class PublicRestApi extends Construct {
         code: lambda.Code.fromAsset(
           path.join('esbuild.out', 'requestConsultation')
         ),
-        handler: 'requestConsultation.handler',
+        handler: 'main.handler',
         layers: [powertoolsLambdaLayer],
         runtime: lambda.Runtime.NODEJS_18_X,
         architecture: lambda.Architecture.ARM_64,
