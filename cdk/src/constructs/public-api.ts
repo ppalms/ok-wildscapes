@@ -93,7 +93,7 @@ export class PublicRestApi extends Construct {
         ),
         handler: 'main.handler',
         layers: [powertoolsLambdaLayer],
-        runtime: lambda.Runtime.NODEJS_18_X,
+        runtime: lambda.Runtime.NODEJS_20_X,
         architecture: lambda.Architecture.ARM_64,
         environment: {
           APP_TABLE_NAME: props.table.tableName,
