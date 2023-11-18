@@ -1,6 +1,6 @@
 import * as cdk from 'aws-cdk-lib';
 import { Template } from 'aws-cdk-lib/assertions';
-import { AppStack } from '../stacks/app-stack';
+import { AppStack } from '../src/stacks/app-stack';
 
 test('Amplify App Created', () => {
   const app = new cdk.App();
@@ -11,7 +11,7 @@ test('Amplify App Created', () => {
     repository: 'XXXXXXXXXXXXX',
     branch: 'main',
     githubTokenName: 'XXXXXXXXXXXXX',
-    amplifyAppName: appName,
+    appName: appName,
     env: { account: '123456789012', region: 'us-east-1' },
   });
 

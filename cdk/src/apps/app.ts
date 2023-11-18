@@ -5,7 +5,7 @@ import { AppStack } from '../stacks/app-stack';
 
 const app = new cdk.App();
 new AppStack(app, 'OkWildscapesStack', {
-  amplifyAppName: 'OkWildscapes',
+  appName: 'OkWildscapes',
   owner: 'ppalms',
   repository: 'ok-wildscapes',
   branch: 'main',

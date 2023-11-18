@@ -1,3 +1,4 @@
+/* eslint-disable */
 // CommonJS build configuration for NodeJS Lambda functions and CDK app
 const glob = require('glob');
 const path = require('path');
@@ -9,9 +10,9 @@ const outputDir = 'esbuild.out';
 console.log('Cleaning esbuild.out');
 require('rimraf').sync(outputDir);
 
-// Lambda functions must be under a "lamba" folder and named
+// Lambda functions must be under the cdk/src/handlers folder and named
 // "[functionName].ts" for esbuild to pick them up
-const lambdaEntryPoints = glob.sync('./src/**/lambda/**/*.ts');
+const lambdaEntryPoints = glob.sync('./src/**/handlers/**/*.ts');
 lambdaEntryPoints.forEach((entry) => {
   const functionName = path.basename(entry, '.ts');
 
@@ -28,10 +29,10 @@ lambdaEntryPoints.forEach((entry) => {
         '@aws-lambda-powertools/commons',
         '@aws-lambda-powertools/logger',
         '@aws-lambda-powertools/metrics',
-        '@aws-lambda-powertools/tracer',
+        '@aws-lambda-powertools/tracer'
       ],
-      outfile: `${outputDir}/${functionName}/${functionName}.js`,
-      format: 'cjs',
+      outfile: `${outputDir}/${functionName}/main.js`,
+      format: 'cjs'
       // sourcemap: true,
     })
     .catch(() => process.exit(1));
@@ -39,13 +40,13 @@ lambdaEntryPoints.forEach((entry) => {
 
 console.log(`Building CDK app`);
 esbuild.build({
-  entryPoints: ['./apps/app.ts'],
+  entryPoints: ['./src/apps/app.ts'],
   bundle: true,
   minify: true,
   platform: 'node',
   target: 'node18',
   external: ['aws-sdk'],
   outfile: `${outputDir}/app.js`,
-  format: 'cjs',
+  format: 'cjs'
   // sourcemap: true,
 });
