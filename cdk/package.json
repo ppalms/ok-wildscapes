@@ -12,8 +12,8 @@
     "cdk": "cdk",
     "bootstrap": "npx ts-node bootstrap.ts",
     "build:cjs": "node esbuild.cjs.config.js",
-    "package": "conc \"tsc --noEmit\" \"yarn build:cjs\"",
-    "deploy": "yarn package && cdk deploy OkWildscapesStack --profile ok-wildscapes --verbose --outputs-file output.json",
+    "package": "conc \"tsc --noEmit\" \"yarn run build:cjs\"",
+    "deploy": "yarn run package && npx aws-cdk deploy OkWildscapesStack --profile ok-wildscapes --verbose --outputs-file output.json",
     "sso": "aws sso login --profile ok-wildscapes"
   },
   "devDependencies": {
