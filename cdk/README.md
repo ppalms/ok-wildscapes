@@ -1,13 +1,13 @@
 # OkWildflowers CDK Project
 
-Requirements:
+## Requirements
 
 - AWS CDK CLI
   - `npm install -g aws-cdk`
   - `cdk bootstrap <profile-name>`
 - [yarn](https://yarnpkg.com/getting-started/install)
 
-Build commands:
+## Build commands
 
 - `yarn build:cjs` bundle and minify CDK stacks and Lambdas
   - Build configuration: `esbuild.cjs.config.js`

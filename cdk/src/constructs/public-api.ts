@@ -8,7 +8,6 @@ import { Construct } from 'constructs';
 import * as path from 'path';
 
 export interface PublicApiProps {
-  appName: string;
   table: dynamodb.Table;
 }
 

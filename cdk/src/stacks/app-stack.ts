@@ -30,7 +30,6 @@ export class AppStack extends cdk.Stack {
     });
 
     const api = new PublicRestApi(this, 'OkWildscapesPublicApi', {
-      appName: appName,
       table: okWildscapesDb.table
     });
 
