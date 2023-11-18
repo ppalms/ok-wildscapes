@@ -37,7 +37,7 @@ export class PipelineStack extends Stack {
         'cd cdk',
         'yarn install --frozen-lockfile',
         'yarn run package',
-        'yarn run cdk synth'
+        'npx aws-cdk synth'
       ],
       primaryOutputDirectory: 'cdk/cdk.out'
     });

@@ -12,7 +12,7 @@ require('rimraf').sync(outputDir);
 
 // Lambda functions must be under the cdk/src/handlers folder and named
 // "[functionName].ts" for esbuild to pick them up
-const lambdaEntryPoints = glob.sync('./src/**/handlers/**/*.ts');
+const lambdaEntryPoints = glob.sync('./src/handlers/**/*.ts');
 lambdaEntryPoints.forEach((entry) => {
   const functionName = path.basename(entry, '.ts');
 
@@ -23,7 +23,7 @@ lambdaEntryPoints.forEach((entry) => {
       bundle: true,
       minify: true,
       platform: 'node',
-      target: 'node18',
+      target: 'node20',
       external: [
         'aws-sdk',
         '@aws-lambda-powertools/commons',
@@ -44,7 +44,7 @@ esbuild.build({
   bundle: true,
   minify: true,
   platform: 'node',
-  target: 'node18',
+  target: 'node20',
   external: ['aws-sdk'],
   outfile: `${outputDir}/app.js`,
   format: 'cjs'
