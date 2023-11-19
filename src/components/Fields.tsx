@@ -1,35 +1,67 @@
 import clsx from 'clsx';
-import { useId } from 'react';
+import { forwardRef, useId } from 'react';
 
 const formClasses =
-  'block w-full appearance-none rounded-lg border border-gray-200 bg-white py-[calc(theme(spacing.2)-1px)] px-[calc(theme(spacing.3)-1px)] text-gray-900 placeholder:text-gray-400 focus:border-cyan-500 focus:outline-none focus:ring-cyan-500 sm:text-sm';
+  'block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald-600 sm:text-sm sm:leading-6';
 
-function Label({ id, children }: { id: string; children: React.ReactNode }) {
+function Label({
+  id,
+  text,
+  description
+}: {
+  id: string;
+  text: string;
+  description?: string | undefined;
+}) {
   return (
-    <label
-      htmlFor={id}
-      className="mb-2 block text-sm font-semibold text-gray-900"
-    >
-      {children}
-    </label>
+    <div className="flex justify-between text-sm leading-6">
+      <label
+        htmlFor={id}
+        className="mb-2 block text-sm font-semibold text-gray-900"
+      >
+        {text}
+      </label>
+      {description && (
+        <p id={`${id}-description`} className="text-gray-400">
+          {description}
+        </p>
+      )}
+    </div>
   );
 }
 
-export function TextField({
-  label,
-  type = 'text',
-  className,
-  ...props
-}: Omit<React.ComponentPropsWithoutRef<'input'>, 'id'> & { label?: string }) {
+export const TextField = forwardRef<
+  HTMLInputElement,
+  Omit<React.ComponentPropsWithoutRef<'input'>, 'id'> & {
+    label?: string;
+    description?: string;
+    error?: string;
+  }
+>(({ label, description, type = 'text', className, error, ...props }, ref) => {
   const id = useId();
 
   return (
     <div className={className}>
-      {label && <Label id={id}>{label}</Label>}
-      <input id={id} type={type} {...props} className={formClasses} />
+      {label && <Label id={id} text={label} description={description} />}
+      <input
+        ref={ref}
+        id={id}
+        type={type}
+        {...props}
+        className={
+          error
+            ? clsx(formClasses, 'ring-red-300 text-red-900 focus:ring-red-500')
+            : formClasses
+        }
+      />
+      {error && (
+        <div className="text-sm text-red-600" role="alert">
+          {error}
+        </div>
+      )}
     </div>
   );
-}
+});
 
 export function SelectField({
   label,
@@ -40,7 +72,7 @@ export function SelectField({
 
   return (
     <div className={className}>
-      {label && <Label id={id}>{label}</Label>}
+      {label && <Label id={id} text={label} />}
       <select id={id} {...props} className={clsx(formClasses, 'pr-8')} />
     </div>
   );

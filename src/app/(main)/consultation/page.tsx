@@ -1,9 +1,10 @@
 'use client';
 
-import { PaperAirplaneIcon, ArrowLeftIcon } from '@heroicons/react/20/solid';
 import Link from 'next/link';
 import { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import { TextField } from '@/components/Fields';
+import { PaperAirplaneIcon, ArrowLeftIcon } from '@heroicons/react/20/solid';
 
 interface ConsultationRequest {
   firstName: string;
@@ -86,116 +87,48 @@ export default function RequestConsultation() {
                       className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2 mb-6"
                       disabled={sending}
                     >
-                      <div>
-                        <label
-                          htmlFor="firstName"
-                          className="block text-sm font-semibold leading-6 text-gray-900"
-                        >
-                          First name
-                        </label>
-                        <div className="mt-2.5">
-                          <input
-                            {...register('firstName', { required: true })}
-                            type="text"
-                            autoComplete="given-name"
-                            className={`block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald-600 sm:text-sm sm:leading-6 ${
-                              errors.firstName
-                                ? 'ring-red-300 text-red-900 focus:ring-red-500'
-                                : ''
-                            }`}
-                          />
-                          {errors.firstName &&
-                            errors.firstName.type === 'required' && (
-                              <span
-                                className="text-sm text-red-600"
-                                role="alert"
-                              >
-                                First name is required
-                              </span>
-                            )}
-                        </div>
-                      </div>
-                      <div>
-                        <label
-                          htmlFor="lastName"
-                          className="block text-sm font-semibold leading-6 text-gray-900"
-                        >
-                          Last name
-                        </label>
-                        <div className="mt-2.5">
-                          <input
-                            {...register('lastName', { required: true })}
-                            type="text"
-                            autoComplete="family-name"
-                            className={`block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald-600 sm:text-sm sm:leading-6 ${
-                              errors.lastName
-                                ? 'ring-red-300 text-red-900 focus:ring-red-500'
-                                : ''
-                            }`}
-                          />
-                          {errors.lastName &&
-                            errors.lastName.type === 'required' && (
-                              <span
-                                className="text-sm text-red-600"
-                                role="alert"
-                              >
-                                Last name is required
-                              </span>
-                            )}
-                        </div>
-                      </div>
-                      <div className="sm:col-span-2">
-                        <label
-                          htmlFor="email"
-                          className="block text-sm font-semibold leading-6 text-gray-900"
-                        >
-                          Email
-                        </label>
-                        <div className="mt-2.5">
-                          <input
-                            {...register('email', { required: true })}
-                            type="email"
-                            autoComplete="email"
-                            className={`block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald-600 sm:text-sm sm:leading-6 ${
-                              errors.email
-                                ? 'ring-red-300 text-red-900 focus:ring-red-500'
-                                : ''
-                            }`}
-                          />
-                          {errors.email && errors.email.type === 'required' && (
-                            <span className="text-sm text-red-600" role="alert">
-                              Email is required
-                            </span>
-                          )}
-                        </div>
-                      </div>
-                      <div className="sm:col-span-2">
-                        <div className="flex justify-between text-sm leading-6">
-                          <label
-                            htmlFor="phone"
-                            className="block font-semibold text-gray-900"
-                          >
-                            Phone
-                          </label>
-                          <p id="phone-description" className="text-gray-400">
-                            Optional
-                          </p>
-                        </div>
-                        <div className="mt-2.5">
-                          <input
-                            {...register('phone')}
-                            id="phone"
-                            name="phone"
-                            autoComplete="tel"
-                            aria-describedby="phone-description"
-                            className={`block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald-600 sm:text-sm sm:leading-6 ${
-                              errors.phone
-                                ? 'ring-red-300 text-red-900 focus:ring-red-500'
-                                : ''
-                            }`}
-                          />
-                        </div>
-                      </div>
+                      <TextField
+                        {...register('firstName', {
+                          required: 'First name is required'
+                        })}
+                        label="First name"
+                        className="mt-2.5"
+                        autoComplete="given-name"
+                        error={errors.firstName?.message}
+                      />
+
+                      <TextField
+                        {...register('lastName', {
+                          required: 'Last name is required'
+                        })}
+                        label="Last name"
+                        className="mt-2.5"
+                        autoComplete="family-name"
+                        error={errors.lastName?.message}
+                      />
+
+                      <TextField
+                        {...register('email', {
+                          required: 'Email is required'
+                        })}
+                        label="Email"
+                        className="mt-2.5 sm:col-span-2"
+                        type="email"
+                        autoComplete="email"
+                        error={errors.email?.message}
+                      />
+
+                      <TextField
+                        {...register('phone', {
+                          required: 'Phone is required'
+                        })}
+                        label="Phone"
+                        description="Optional"
+                        className="mt-2.5 sm:col-span-2"
+                        type="tel"
+                        autoComplete="tel"
+                        error={errors.phone?.message}
+                      />
                     </fieldset>
 
                     {/* Project info */}
@@ -270,8 +203,13 @@ export default function RequestConsultation() {
                         <div className="mt-2.5">
                           <textarea
                             {...register('message', {
-                              required: true,
-                              maxLength: 2000
+                              required:
+                                'Please include some details about what you hope to achieve',
+                              maxLength: {
+                                value: 2000,
+                                message:
+                                  'Message must be 2000 characters or less'
+                              }
                             })}
                             id="message"
                             name="message"
@@ -285,25 +223,11 @@ export default function RequestConsultation() {
                             }`}
                             defaultValue={''}
                           />
-                          {errors.message &&
-                            errors.message.type === 'required' && (
-                              <span
-                                className="text-sm text-red-600"
-                                role="alert"
-                              >
-                                Please include some details about what you hope
-                                to achieve
-                              </span>
-                            )}
-                          {errors.message &&
-                            errors.message.type === 'maxLength' && (
-                              <span
-                                className="text-sm text-red-600"
-                                role="alert"
-                              >
-                                Message must be 2000 characters or less
-                              </span>
-                            )}
+                          {errors.message && (
+                            <span className="text-sm text-red-600" role="alert">
+                              {errors.message.message}
+                            </span>
+                          )}
                         </div>
                         <div className="mt-4">
                           <p className="text-xs text-gray-600">
