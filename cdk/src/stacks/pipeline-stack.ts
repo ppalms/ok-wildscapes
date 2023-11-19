@@ -52,6 +52,10 @@ export class PipelineStack extends Stack {
       new OkWildscapesStage(this, 'OkWildscapesDevStage', {
         stageName: 'Dev',
         config: Dev,
+        owner: owner,
+        repository: repository,
+        branch: branch,
+        githubTokenName: githubTokenName,
         env: {
           account: Dev.account.accountId,
           region: Dev.region
@@ -63,6 +67,10 @@ export class PipelineStack extends Stack {
       new OkWildscapesStage(this, 'OkWildscapesProdStage', {
         stageName: 'Prod',
         config: Prod,
+        owner: owner,
+        repository: repository,
+        branch: branch,
+        githubTokenName: githubTokenName,
         env: {
           account: Prod.account.accountId,
           region: Prod.region

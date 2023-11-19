@@ -4,12 +4,18 @@ import { AppStack } from '../stacks/app-stack';
 import { EnvironmentConfig } from '../apps/app';
 
 export interface OkWildscapesStageProps extends StageProps {
-  config: EnvironmentConfig;
+  readonly owner: string;
+  readonly repository: string;
+  readonly branch: string;
+  readonly githubTokenName: string;
+  readonly config: EnvironmentConfig;
 }
 
 export class OkWildscapesStage extends Stage {
   constructor(scope: Stack, id: string, props: OkWildscapesStageProps) {
     super(scope, id, props);
+
+    const { owner, repository, branch, githubTokenName } = props;
 
     if (!props.stageName) {
       throw new Error('stageName is required');
@@ -27,10 +33,10 @@ export class OkWildscapesStage extends Stage {
 
     new AppStack(this, 'OkWildscapesStack', {
       appName: 'OkWildscapes',
-      owner: 'ppalms',
-      repository: 'ok-wildscapes',
-      branch: 'main',
-      githubTokenName: 'ok-wildscapes-cicd-token',
+      owner: owner,
+      repository: repository,
+      branch: branch,
+      githubTokenName: githubTokenName,
       env: {
         account: props.config.account.accountId,
         region: props.config.region
