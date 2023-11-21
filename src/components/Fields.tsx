@@ -30,9 +30,12 @@ function Label({
   );
 }
 
+/**
+ * TextField for use with react-hook-form
+ */
 export const TextField = forwardRef<
   HTMLInputElement,
-  Omit<React.ComponentPropsWithoutRef<'input'>, 'id'> & {
+  Omit<React.ComponentPropsWithRef<'input'>, 'id'> & {
     label?: string;
     description?: string;
     error?: string;
@@ -62,6 +65,8 @@ export const TextField = forwardRef<
     </div>
   );
 });
+
+TextField.displayName = 'TextField';
 
 export function SelectField({
   label,
