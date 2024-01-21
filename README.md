@@ -2,6 +2,21 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
+### Prerequisites
+
+- AWS account for personal sandbox
+- AWS config profile called "sandbox" that points to your AWS sandbox account for local dev
+
+### Deploy to sandbox account
+
+Open a terminal from the cdk folder and run `aws sso login --profile sandbox`
+
+Uncomment the OkWildscapes AppStack in `cdk\apps\app.ts` and run `yarn deploy`
+
+CDK will output the API base URL to `cdk\output.json`. Copy `.env.local.example` and rename it to `.env.local`. Replace env vars with your API base URL and API key.
+
+### Next.js
+
 First, run the development server:
 
 ```bash
@@ -28,16 +43,3 @@ To learn more about Next.js, take a look at the following resources:
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy to sandbox account
-
-### Prerequisites
-
-- AWS account
-- AWS config profile called "ok-wildscapes" that points to your AWS account
-
-Open a terminal from the cdk folder and run `aws sso login --profile ok-wildscapes`
-
-Uncomment the OkWildscapes AppStack in `cdk\apps\app.ts` and run `yarn deploy`
-
-CDK will output the API base URL to `cdk\output.json`. Update `.env.local.example` with your API base URL and API key (look in the AWS console) and remove the _.example_ placeholder
