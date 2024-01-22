@@ -4,7 +4,11 @@
 
 @layer components {
   .h-100 {
-    height: 30rem;
+    height: 40rem;
+  }
+  .bg-emerald-1000 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(2 34 34 / var(--tw-bg-opacity));
   }
 }
 
@@ -38,7 +42,7 @@ body {
 
 /* Embla Carousel styles https://www.embla-carousel.com */
 .embla {
-  @apply w-full overflow-hidden p-4 bg-slate-950;
+  @apply w-full overflow-hidden relative bg-emerald-1000;
 }
 .embla-container {
   @apply flex h-80 sm:h-100;
@@ -47,12 +51,51 @@ body {
   flex: 0 0 100%;
   position: relative;
 }
-.embla-slide:hover {
+.embla-slide:hover,
+.embla-buttons:hover {
   cursor: grab;
 }
-.embla-slide:active {
+.embla-slide:active,
+.embla-buttons:active {
   cursor: grabbing;
 }
 .carousel-image {
   object-fit: contain;
+}
+.embla-buttons {
+  @apply absolute left-0 top-2/4 -translate-y-2/4 flex items-center justify-between w-full;
+}
+.embla-button {
+  @apply hidden sm:flex -mx-2 w-14 h-14 justify-center items-center cursor-pointer bg-cyan-700 rounded-lg border-double border-4 border-cyan-900 hover:bg-cyan-600 active:bg-neutral-500;
+}
+.embla-button:disabled {
+  opacity: 0.3;
+}
+.embla-button-svg {
+  width: 65%;
+  height: 65%;
+}
+.embla-dot {
+  -webkit-appearance: none;
+  background-color: transparent;
+  touch-action: manipulation;
+  display: inline-flex;
+  text-decoration: none;
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+.embla-dots {
+  @apply relative flex items-center justify-center left-0 right-0 bg-emerald-950 pb-1 sm:p-0;
+}
+.embla-dot {
+  @apply flex items-center mx-3 w-10 h-8 sm:h-12;
+}
+.embla-dot:after {
+  content: '';
+  @apply w-full h-2 rounded bg-cyan-800;
+}
+.embla-dot--selected:after {
+  @apply bg-cyan-50;
 }

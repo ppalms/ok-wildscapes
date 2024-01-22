@@ -6,10 +6,10 @@ export function Projects() {
   return (
     <section
       id="projects"
-      className="relative overflow-hidden bg-emerald-950 py-20 sm:py-28"
+      className="relative overflow-hidden bg-emerald-950 pt-20 sm:pt-28"
     >
       <Container className="relative">
-        <div className="mx-auto max-w-xl sm:text-center">
+        <div className="mx-auto pb-4 max-w-xl sm:text-center">
           <h2 className="font-display text-3xl font-bold tracking-tight text-white">
             Our Projects
           </h2>
@@ -18,9 +18,10 @@ export function Projects() {
             across Oklahoma! Follow us on Instagram for regular updates and
             snapshots of our projects in action.
           </p>
-          <div className="my-8">
+          <div className="p-8">
             <div className="flex items-center justify-center">
               <a
+                className="p-4 rounded-2xl shadow-neutral-950 shadow-lg border-4 border-dashed border-emerald-800 hover:bg-emerald-900"
                 href="https://www.instagram.com/oklahomawildscapes/?utm_source=ig_embed&amp;utm_campaign=loading"
                 target="_blank"
               >

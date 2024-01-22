@@ -3,9 +3,15 @@
 import Image from 'next/image';
 import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
+import {
+  PrevButton,
+  NextButton,
+  usePrevNextButtons
+} from './CarouselArrowButtons';
+import { DotButton, useDotButton } from './CarouselDotButton';
 
 export const Carousel = () => {
-  const [emblaRef] = useEmblaCarousel(
+  const [emblaRef, emblaApi] = useEmblaCarousel(
     {
       align: 'start',
       loop: true,
@@ -14,6 +20,16 @@ export const Carousel = () => {
     },
     [Autoplay()]
   );
+
+  const { selectedIndex, scrollSnaps, onDotButtonClick } =
+    useDotButton(emblaApi);
+
+  const {
+    prevBtnDisabled,
+    nextBtnDisabled,
+    onPrevButtonClick,
+    onNextButtonClick
+  } = usePrevNextButtons(emblaApi);
 
   return (
     <div className="embla" ref={emblaRef}>
@@ -82,6 +98,23 @@ export const Carousel = () => {
             fill={true}
           />
         </div>
+      </div>
+
+      <div className="embla-buttons">
+        <PrevButton onClick={onPrevButtonClick} disabled={prevBtnDisabled} />
+        <NextButton onClick={onNextButtonClick} disabled={nextBtnDisabled} />
+      </div>
+
+      <div className="embla-dots">
+        {scrollSnaps.map((_, index) => (
+          <DotButton
+            key={index}
+            onClick={() => onDotButtonClick(index)}
+            className={'embla-dot'.concat(
+              index === selectedIndex ? ' embla-dot--selected' : ''
+            )}
+          />
+        ))}
       </div>
     </div>
   );
