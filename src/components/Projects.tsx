@@ -1,30 +1,30 @@
-import { Container } from '@/components/Container';
 import Image from 'next/image';
+import { Container } from '@/components/Container';
+import { Carousel } from '@/components/Carousel';
 
 export function Projects() {
   return (
     <section
       id="projects"
-      className="relative overflow-hidden bg-emerald-950 py-20 sm:py-28">
+      className="relative overflow-hidden bg-emerald-950 pt-20 sm:pt-28"
+    >
       <Container className="relative">
-        <div className="mx-auto max-w-xl sm:text-center">
+        <div className="mx-auto pb-4 max-w-xl sm:text-center">
           <h2 className="font-display text-3xl font-bold tracking-tight text-white">
             Our Projects
           </h2>
           <p className="mt-4 text-lg text-gray-300">
-            Discover the vibrant, eco-friendly landscapes we're cultivating
-            across Oklahoma! Our gallery is a showcase of our dedication to
-            transforming spaces into thriving ecosystems that buzz with life.
+            Explore the vibrant, eco-friendly landscapes we're cultivating
+            across Oklahoma! Follow us on Instagram for regular updates and
+            snapshots of our projects in action.
           </p>
-          <div className="mt-8">
-            {/* <p className="mt-4 text-lg text-gray-300">
-              Explore our work on Instagram to see how we bring a touch of wild
-              to the modern world, one garden at a time.
-            </p> */}
+          <div className="p-8">
             <div className="flex items-center justify-center">
               <a
+                className="p-4 rounded-2xl shadow-neutral-950 shadow-lg border-4 border-dashed border-emerald-800 hover:bg-emerald-900"
                 href="https://www.instagram.com/oklahomawildscapes/?utm_source=ig_embed&amp;utm_campaign=loading"
-                target="_blank">
+                target="_blank"
+              >
                 <Image
                   className="w-32 mx-auto"
                   priority
@@ -41,6 +41,8 @@ export function Projects() {
           </div>
         </div>
       </Container>
+
+      <Carousel />
     </section>
   );
 }

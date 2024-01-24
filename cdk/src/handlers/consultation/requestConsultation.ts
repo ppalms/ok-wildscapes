@@ -18,26 +18,27 @@ const logger = new Logger();
 export const handler = async (
   event: lambda.APIGatewayProxyEvent
 ): Promise<lambda.APIGatewayProxyResult> => {
+  logger.info(`Received request from client ${event.body}`);
+  let consultationRequest: ConsultationRequest;
+
   try {
-    logger.info(`Received request from client ${event.body}`);
-    let consultationRequest: ConsultationRequest;
+    consultationRequest = <ConsultationRequest>JSON.parse(event.body!);
+  } catch (error) {
+    logger.error('Invalid request', error as Error);
 
-    try {
-      consultationRequest = <ConsultationRequest>JSON.parse(event.body!);
-    } catch (error) {
-      logger.error('Invalid request', error as Error);
+    return {
+      statusCode: 400,
+      body: JSON.stringify({
+        message: 'Invalid request',
+        input: event.body
+      })
+    };
+  }
 
-      return {
-        statusCode: 400,
-        body: JSON.stringify({
-          message: 'Invalid request',
-          input: event.body
-        })
-      };
-    }
+  const consultationId = v4();
+  logger.info(`Creating consultation ${consultationId}`);
 
-    const consultationId = v4();
-    logger.info(`Creating consultation ${consultationId}`);
+  try {
     const dbClient = new dynamodb.DynamoDBClient();
 
     const consultationRequestItem = {
