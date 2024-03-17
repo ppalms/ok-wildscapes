@@ -98,7 +98,10 @@ export class PublicRestApi extends Construct {
           APP_TABLE_NAME: props.table.tableName,
           POWERTOOLS_SERVICE_NAME: 'ok-wildscapes',
           SHARED_SERVICES_ROLE_ARN: props.sharedServicesRoleArn
-        }
+        },
+        logGroup: new logs.LogGroup(this, 'RequestConsultationLogGroup', {
+          retention: logs.RetentionDays.ONE_WEEK
+        })
       }
     );
 
