@@ -85,7 +85,7 @@ export class PublicRestApi extends Construct {
 
     const requestConsultation = new lambda.Function(
       this,
-      'RequestConsultation',
+      'RequestConsultationFunction',
       {
         code: lambda.Code.fromAsset(
           path.join('esbuild.out', 'requestConsultation')
@@ -100,6 +100,13 @@ export class PublicRestApi extends Construct {
           SHARED_SERVICES_ROLE_ARN: props.sharedServicesRoleArn
         }
       }
+    );
+
+    requestConsultation.addToRolePolicy(
+      new iam.PolicyStatement({
+        actions: ['sts:AssumeRole'],
+        resources: [props.sharedServicesRoleArn]
+      })
     );
 
     props.table.grantReadData(requestConsultation);
