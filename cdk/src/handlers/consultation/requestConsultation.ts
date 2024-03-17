@@ -20,7 +20,7 @@ const logger = new Logger();
 export const handler = async (
   event: lambda.APIGatewayProxyEvent
 ): Promise<lambda.APIGatewayProxyResult> => {
-  logger.info(`Received consultation request ${event.body}`);
+  logger.info(`Received consultation request ${JSON.stringify(event.body)}`);
   let consultationRequest: ConsultationRequest;
 
   try {
@@ -42,19 +42,45 @@ export const handler = async (
 
   try {
     const stsClient = new sts.STSClient({ region: 'us-east-1' });
-    await stsClient.send(
+    const assumedRole = await stsClient.send(
       new sts.AssumeRoleCommand({
         RoleArn: process.env.SHARED_SERVICES_ROLE_ARN,
         RoleSessionName: `WorkloadAccess_${consultationId}`
       })
     );
 
-    const sesClient = new ses.SESClient({ region: 'us-east-1' });
+    const accessKeyId = assumedRole.Credentials?.AccessKeyId;
+    const secretAccessKey = assumedRole.Credentials?.SecretAccessKey;
+    const sessionToken = assumedRole.Credentials?.SessionToken;
+
+    if (!accessKeyId || !secretAccessKey || !sessionToken) {
+      logger.critical(
+        'Failed to assume shared services role',
+        JSON.stringify(assumedRole)
+      );
+      return {
+        statusCode: 500,
+        body: JSON.stringify({
+          message: 'Internal server error',
+          input: event.body
+        })
+      };
+    }
+
+    logger.info('Emailing consultation request');
+    const sesClient = new ses.SESClient({
+      credentials: {
+        accessKeyId,
+        secretAccessKey,
+        sessionToken
+      },
+      region: 'us-east-1'
+    });
     await sesClient.send(
       new ses.SendEmailCommand({
         Source: 'no-reply@okwildscapes.com',
         Destination: {
-          ToAddresses: ['patrick@okwildscapes.com']
+          ToAddresses: ['contact@okwildscapes.com']
         },
         Message: {
           Subject: {
@@ -63,7 +89,16 @@ export const handler = async (
           Body: {
             Html: {
               Data: `<h1>New consultation request</h1>
-              <p>${JSON.stringify(consultationRequest)}</p>`
+<div>
+  <p>
+    Name: ${consultationRequest.firstName} ${consultationRequest.lastName}<br />
+    Email: ${consultationRequest.email}<br />
+    Phone: ${consultationRequest.phone}<br />
+    Project Size: ${consultationRequest.projectSize}<br />
+    Message: ${consultationRequest.message}<br />
+    Consultation ID: ${consultationId}<br />
+  </p>
+</div>`
             }
           }
         }
@@ -71,6 +106,13 @@ export const handler = async (
     );
   } catch (error) {
     logger.critical('Consultation request email failed', error as Error);
+    return {
+      statusCode: 500,
+      body: JSON.stringify({
+        message: 'Internal server error',
+        input: event.body
+      })
+    };
   }
 
   try {
@@ -89,9 +131,7 @@ export const handler = async (
     });
 
     await dbClient.send(putItemCommand);
-    logger.info(
-      `Saved consultation request ${JSON.stringify(consultationRequestItem)}`
-    );
+    logger.info(`Saved consultation request ${consultationRequestItem.PK}`);
 
     return {
       statusCode: 201,
@@ -104,7 +144,7 @@ export const handler = async (
         'Access-Control-Allow-Credentials': true
       },
       body: JSON.stringify({
-        message: 'Consultation request saved',
+        message: 'Consultation request sent',
         result: { consultationId, ...consultationRequest }
       })
     };
@@ -113,7 +153,7 @@ export const handler = async (
     return {
       statusCode: 500,
       body: JSON.stringify({
-        message: 'Error saving consultation request',
+        message: 'Internal server error',
         input: event.body
       })
     };
