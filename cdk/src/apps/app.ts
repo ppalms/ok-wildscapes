@@ -27,7 +27,7 @@ new PipelineStack(app, 'OkWildscapesPipelineStack', {
   owner: 'ppalms',
   repository: 'ok-wildscapes',
   branch: 'main',
-  githubTokenName: 'ok-wildscapes-cicd-token',
+  githubTokenName: 'ok-wildscapes-github-token',
   devConfig: Dev,
   prodConfig: Prod,
   env: {

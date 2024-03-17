@@ -32,16 +32,14 @@ export class PublicRestApi extends Construct {
       cloudWatchRoleArn: apiLoggingRole.roleArn
     });
 
-    const apiGatewayLogGroup = new logs.LogGroup(this, 'ApiGatewayLogGroup', {
+    const logGroup = new logs.LogGroup(this, 'ApiGatewayLogGroup', {
       retention: logs.RetentionDays.ONE_WEEK
     });
 
     const api = new apigateway.RestApi(this, 'PublicApi', {
       restApiName: 'Public API',
       deployOptions: {
-        accessLogDestination: new apigateway.LogGroupLogDestination(
-          apiGatewayLogGroup
-        ),
+        accessLogDestination: new apigateway.LogGroupLogDestination(logGroup),
         accessLogFormat: apigateway.AccessLogFormat.jsonWithStandardFields()
       },
       defaultCorsPreflightOptions: {
@@ -97,7 +95,7 @@ export class PublicRestApi extends Construct {
         architecture: lambda.Architecture.ARM_64,
         environment: {
           APP_TABLE_NAME: props.table.tableName,
-          POWERTOOLS_SERVICE_NAME: 'requestConsultation'
+          POWERTOOLS_SERVICE_NAME: 'ok-wildscapes'
         }
       }
     );

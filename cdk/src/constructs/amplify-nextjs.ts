@@ -50,7 +50,7 @@ export class AmplifyNextjs extends Construct {
       sourceCodeProvider: new GitHubSourceCodeProvider({
         owner: this.owner,
         repository: this.repository,
-        oauthToken: SecretValue.secretsManager(this.githubTokenName)
+        oauthToken: SecretValue.secretsManager(this.githubTokenName) // TODO pass ARN to shared secret
       }),
       environmentVariables: {
         NEXT_PUBLIC_API_BASE_URL: this.apiBaseUrl

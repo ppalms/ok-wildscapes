@@ -1,18 +1,18 @@
 {
   "toolchain": {
-    "profile": "toolchain-prod",
-    "accountId": "749738143297"
+    "profile": "shared-services",
+    "accountId": "590184020934"
   },
   "network": {
-    "profile": "network-prod",
-    "accountId": "490240629122"
+    "profile": "shared-services",
+    "accountId": "590184020934"
   },
   "development": {
     "profile": "ok-wildscapes-dev",
-    "accountId": "995396437614"
+    "accountId": "975050055779"
   },
   "production": {
     "profile": "ok-wildscapes-prod",
-    "accountId": "311541930391"
+    "accountId": "590183737384"
   }
 }

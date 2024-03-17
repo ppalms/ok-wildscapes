@@ -25,9 +25,7 @@ export class AppStack extends cdk.Stack {
 
     super(scope, id, stackProps);
 
-    const okWildscapesDb = new DynamoDbTable(this, 'OkWildscapesDatabase', {
-      tableName: 'ok-wildscapes'
-    });
+    const okWildscapesDb = new DynamoDbTable(this, 'OkWildscapesDatabase');
 
     const api = new PublicRestApi(this, 'OkWildscapesPublicApi', {
       table: okWildscapesDb.table

@@ -18,7 +18,7 @@ const logger = new Logger();
 export const handler = async (
   event: lambda.APIGatewayProxyEvent
 ): Promise<lambda.APIGatewayProxyResult> => {
-  logger.info(`Received request from client ${event.body}`);
+  logger.info(`Received consultation request ${event.body}`);
   let consultationRequest: ConsultationRequest;
 
   try {
@@ -44,7 +44,8 @@ export const handler = async (
     const consultationRequestItem = {
       PK: `CONSULTATION#${consultationId}`,
       SK: 'REQUEST',
-      ...consultationRequest
+      ...consultationRequest,
+      createdAt: new Date().toISOString()
     };
 
     const putItemCommand = new dynamodb.PutItemCommand({
