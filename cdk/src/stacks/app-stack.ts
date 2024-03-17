@@ -10,6 +10,7 @@ export interface AppStackProps extends cdk.StackProps {
   repository: string;
   branch: string;
   githubTokenName: string;
+  sharedServicesRoleArn: string;
 }
 
 export class AppStack extends cdk.Stack {
@@ -20,6 +21,7 @@ export class AppStack extends cdk.Stack {
       repository,
       branch,
       githubTokenName,
+      sharedServicesRoleArn,
       ...stackProps
     } = props;
 
@@ -28,7 +30,8 @@ export class AppStack extends cdk.Stack {
     const okWildscapesDb = new DynamoDbTable(this, 'OkWildscapesDatabase');
 
     const api = new PublicRestApi(this, 'OkWildscapesPublicApi', {
-      table: okWildscapesDb.table
+      table: okWildscapesDb.table,
+      sharedServicesRoleArn
     });
 
     new AmplifyNextjs(this, 'OkWildscapesNextJs', {

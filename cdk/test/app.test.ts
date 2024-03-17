@@ -12,11 +12,12 @@ test('Amplify App Created', () => {
     branch: 'main',
     githubTokenName: 'XXXXXXXXXXXXX',
     appName: appName,
-    env: { account: '123456789012', region: 'us-east-1' },
+    sharedServicesRoleArn: 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',
+    env: { account: '123456789012', region: 'us-east-1' }
   });
 
   const template = Template.fromStack(stack);
   template.hasResourceProperties('AWS::Amplify::App', {
-    Name: appName,
+    Name: appName
   });
 });

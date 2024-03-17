@@ -9,6 +9,7 @@ import * as path from 'path';
 
 export interface PublicApiProps {
   table: dynamodb.Table;
+  sharedServicesRoleArn: string;
 }
 
 export class PublicRestApi extends Construct {
@@ -95,7 +96,8 @@ export class PublicRestApi extends Construct {
         architecture: lambda.Architecture.ARM_64,
         environment: {
           APP_TABLE_NAME: props.table.tableName,
-          POWERTOOLS_SERVICE_NAME: 'ok-wildscapes'
+          POWERTOOLS_SERVICE_NAME: 'ok-wildscapes',
+          SHARED_SERVICES_ROLE_ARN: props.sharedServicesRoleArn
         }
       }
     );

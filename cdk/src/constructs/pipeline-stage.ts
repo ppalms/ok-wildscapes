@@ -8,6 +8,7 @@ export interface OkWildscapesStageProps extends StageProps {
   readonly repository: string;
   readonly branch: string;
   readonly githubTokenName: string;
+  readonly sharedServicesRoleArn: string;
   readonly config: EnvironmentConfig;
 }
 
@@ -37,6 +38,7 @@ export class OkWildscapesStage extends Stage {
       repository: repository,
       branch: branch,
       githubTokenName: githubTokenName,
+      sharedServicesRoleArn: props.sharedServicesRoleArn,
       env: {
         account: props.config.account.accountId,
         region: props.config.region

@@ -9,6 +9,7 @@ export interface PipelineProps extends StackProps {
   readonly repository: string;
   readonly branch: string;
   readonly githubTokenName: string;
+  readonly sharedServicesRoleArn: string;
   readonly devConfig: EnvironmentConfig;
   readonly prodConfig: EnvironmentConfig;
 }
@@ -22,6 +23,7 @@ export class PipelineStack extends Stack {
       repository,
       branch,
       githubTokenName,
+      sharedServicesRoleArn,
       devConfig: Dev,
       prodConfig: Prod
     } = props;
@@ -52,10 +54,11 @@ export class PipelineStack extends Stack {
       new OkWildscapesStage(this, 'OkWildscapesDevStage', {
         stageName: 'Dev',
         config: Dev,
-        owner: owner,
-        repository: repository,
-        branch: branch,
-        githubTokenName: githubTokenName,
+        owner,
+        repository,
+        branch,
+        githubTokenName,
+        sharedServicesRoleArn,
         env: {
           account: Dev.account.accountId,
           region: Dev.region
@@ -71,6 +74,7 @@ export class PipelineStack extends Stack {
         repository: repository,
         branch: branch,
         githubTokenName: githubTokenName,
+        sharedServicesRoleArn,
         env: {
           account: Prod.account.accountId,
           region: Prod.region
