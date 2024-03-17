@@ -28,6 +28,7 @@ new PipelineStack(app, 'OkWildscapesPipelineStack', {
   repository: 'ok-wildscapes',
   branch: 'main',
   githubTokenName: 'ok-wildscapes-github-token',
+  sharedServicesRoleArn: 'arn:aws:iam::590184020934:role/WorkloadAccess',
   devConfig: Dev,
   prodConfig: Prod,
   env: {
