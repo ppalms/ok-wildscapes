@@ -43,3 +43,5 @@ To learn more about Next.js, take a look at the following resources:
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+
+To add existing Amplify API to new Next.js project run `npx @aws-amplify/cli codegen add --apiId appsyncapiid --region us-east-1`

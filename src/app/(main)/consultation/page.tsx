@@ -5,13 +5,31 @@ import { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { TextField } from '@/components/Fields';
 import { PaperAirplaneIcon, ArrowLeftIcon } from '@heroicons/react/20/solid';
+import { Amplify } from 'aws-amplify';
+import { generateClient } from 'aws-amplify/api';
+import { requestConsultation } from '@/graphql/mutations';
+import { ProjectSize } from '@/API';
+
+Amplify.configure({
+  API: {
+    GraphQL: {
+      endpoint: process.env.NEXT_PUBLIC_API_URL!,
+      region: 'us-east-1',
+      defaultAuthMode: 'apiKey',
+      apiKey: process.env.NEXT_PUBLIC_API_KEY
+    }
+  }
+});
+
+const client = generateClient();
 
 interface ConsultationRequest {
   firstName: string;
   lastName: string;
   email: string;
   phone: string;
-  projectSize: string;
+  zipCode: string;
+  projectSize: ProjectSize;
   message: string;
 }
 
@@ -31,21 +49,16 @@ export default function RequestConsultation() {
     setSending(true);
 
     try {
-      await fetch(
-        `${process.env.NEXT_PUBLIC_API_BASE_URL!}/consultation-request`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'X-Api-Key': `${process.env.NEXT_PUBLIC_API_KEY}`
-          },
-          body: JSON.stringify(request)
-        }
-      );
-
+      const result = await client.graphql({
+        query: requestConsultation,
+        variables: { consultationRequest: request }
+      });
+      if (result.errors) {
+        // TODO
+      }
       setSent(true);
     } catch (e) {
-      // TODO add notification component
+      // TODO
     } finally {
       setSending(false);
     }
@@ -119,6 +132,17 @@ export default function RequestConsultation() {
                       />
 
                       <TextField
+                        {...register('zipCode', {
+                          required: 'Zip code is required'
+                        })}
+                        label="Zip Code"
+                        className="mt-2.5 sm:col-span-2"
+                        type="text"
+                        autoComplete="postal-code"
+                        error={errors.phone?.message}
+                      />
+
+                      <TextField
                         {...register('phone', {
                           required: 'Phone is required'
                         })}
@@ -148,7 +172,7 @@ export default function RequestConsultation() {
                           <input
                             {...register('projectSize', { required: true })}
                             id="project-size-under-1k"
-                            value="under_1k"
+                            value={ProjectSize.UNDER_1K}
                             type="radio"
                             className="mt-1 h-4 w-4 border-gray-300 text-emerald-600 shadow-sm focus:ring-emerald-600"
                           />
@@ -160,7 +184,7 @@ export default function RequestConsultation() {
                           <input
                             {...register('projectSize', { required: true })}
                             id="project-size-1k-2k"
-                            value="1k_2k"
+                            value={ProjectSize._1K_TO_2K}
                             type="radio"
                             className="mt-1 h-4 w-4 border-gray-300 text-emerald-600 shadow-sm focus:ring-emerald-600"
                           />
@@ -172,7 +196,7 @@ export default function RequestConsultation() {
                           <input
                             {...register('projectSize', { required: true })}
                             id="project-size-over-2k"
-                            value="over_2k"
+                            value={ProjectSize.OVER_2K}
                             type="radio"
                             className="mt-1 h-4 w-4 border-gray-300 text-emerald-600 shadow-sm focus:ring-emerald-600"
                           />
@@ -265,6 +289,7 @@ export default function RequestConsultation() {
                     <button
                       type="submit"
                       className="rounded-md flex items-center bg-emerald-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-emerald-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600"
+                      disabled={sending}
                     >
                       {sending ? (
                         <>

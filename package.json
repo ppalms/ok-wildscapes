@@ -7,13 +7,15 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "codegen": "npx @aws-amplify/cli codegen"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.15",
     "@headlessui/tailwindcss": "^0.2.0",
     "@heroicons/react": "^2.0.18",
     "@tailwindcss/forms": "^0.5.3",
+    "aws-amplify": "^6.0.21",
     "clsx": "^2.0.0",
     "embla-carousel-autoplay": "^8.0.0-rc19",
     "embla-carousel-react": "^8.0.0-rc19",
