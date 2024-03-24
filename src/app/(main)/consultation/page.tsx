@@ -139,13 +139,11 @@ export default function RequestConsultation() {
                         className="mt-2.5 sm:col-span-2"
                         type="text"
                         autoComplete="postal-code"
-                        error={errors.phone?.message}
+                        error={errors.zipCode?.message}
                       />
 
                       <TextField
-                        {...register('phone', {
-                          required: 'Phone is required'
-                        })}
+                        {...register('phone')}
                         label="Phone"
                         description="Optional"
                         className="mt-2.5 sm:col-span-2"
