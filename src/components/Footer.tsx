@@ -37,39 +37,39 @@ export function Footer() {
     <footer className="border-t border-gray-200">
       <Container>
         <div className="flex flex-col items-start justify-between gap-y-12 py-12 lg:flex-row lg:items-center lg:py-16">
-          <div>
-            <div className="flex items-center text-gray-900">
-              <Logomark className="h-10 w-10 flex-none fill-cyan-500" />
-              <div className="ml-4 w-96">
-                <p className="text-base font-semibold">Oklahoma Wildscapes</p>
-                <p className="mt-1 text-sm">Bring your outdoor space to life</p>
-              </div>
+          <div className="flex items-center text-gray-900">
+            <Logomark className="h-10 w-10 flex-none fill-cyan-500" />
+            <div className="ml-4">
+              <p className="text-base font-semibold">Oklahoma Wildscapes</p>
+              <p className="mt-1 text-sm">Bring your outdoor space to life</p>
             </div>
-
-            <nav className="mt-11 flex gap-8">
-              <NavLinks />
-            </nav>
           </div>
+
+          <nav className="mt-2 flex gap-8">
+            <NavLinks />
+          </nav>
         </div>
       </Container>
 
-      <div className="border-t border-gray-200 mx-auto max-w-7xl px-6 py-8 md:flex md:items-center md:justify-between lg:px-8">
-        <div className="flex justify-center space-x-6 md:order-2">
-          {navigation.map((item) => (
-            <a
-              key={item.name}
-              href={item.href}
-              className="text-gray-400 hover:text-gray-500"
-            >
-              <span className="sr-only">{item.name}</span>
-              <item.icon className="h-6 w-6" aria-hidden="true" />
-            </a>
-          ))}
-        </div>
-        <div className="mt-8 md:order-1 md:mt-0">
-          <p className="text-center text-xs leading-5 text-gray-500">
-            &copy; Copyright 2024. All rights reserved.
-          </p>
+      <div className="w-full border-t border-gray-200">
+        <div className="mx-auto max-w-7xl px-6 py-8 md:flex md:items-center md:justify-between lg:px-8">
+          <div className="flex justify-center space-x-6 md:order-2">
+            {navigation.map((item) => (
+              <a
+                key={item.name}
+                href={item.href}
+                className="text-gray-400 hover:text-gray-500"
+              >
+                <span className="sr-only">{item.name}</span>
+                <item.icon className="h-6 w-6" aria-hidden="true" />
+              </a>
+            ))}
+          </div>
+          <div className="mt-8 md:order-1 md:mt-0">
+            <p className="text-center text-xs leading-5 text-gray-500">
+              &copy; Copyright 2024. All rights reserved.
+            </p>
+          </div>
         </div>
       </div>
     </footer>
