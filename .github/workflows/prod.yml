@@ -25,4 +25,4 @@ jobs:
           role-to-assume: ${{ secrets.PROD_DEPLOYMENT_ROLE }}
           role-session-name: GithubActionsSession
       - name: Trigger Amplify deploy
-        run: amplify publish
+        run: curl -X POST -d {} "${{ secrets.AMPLIFY_WEBHOOK_URL }}" -H "Content-Type:application/json"
