@@ -4,7 +4,10 @@ projects:
     includes:
       - src/graphql/**/*.ts
     excludes:
-      - ./amplify/**
+      - .github/**
+      - .next/**
+      - node_modules/**
+      - public/**
       - src/API.ts
     extensions:
       amplify:

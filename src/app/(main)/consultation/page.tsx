@@ -8,7 +8,7 @@ import { PaperAirplaneIcon, ArrowLeftIcon } from '@heroicons/react/20/solid';
 import { Amplify } from 'aws-amplify';
 import { generateClient } from 'aws-amplify/api';
 import { requestConsultation } from '@/graphql/mutations';
-import { ProjectSize } from '@/API';
+import { ConsultationRequestInput, ProjectSize } from '@/API';
 
 Amplify.configure({
   API: {
@@ -23,28 +23,18 @@ Amplify.configure({
 
 const client = generateClient();
 
-interface ConsultationRequest {
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
-  zipCode: string;
-  projectSize: ProjectSize;
-  message: string;
-}
-
 export default function RequestConsultation() {
   const {
     register,
     handleSubmit,
     formState: { errors }
-  } = useForm<ConsultationRequest>();
+  } = useForm<ConsultationRequestInput>();
 
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
 
-  const onSubmit: SubmitHandler<ConsultationRequest> = async (
-    request: ConsultationRequest
+  const onSubmit: SubmitHandler<ConsultationRequestInput> = async (
+    request: ConsultationRequestInput
   ) => {
     setSending(true);
 
@@ -136,7 +126,7 @@ export default function RequestConsultation() {
                           required: 'Zip code is required'
                         })}
                         label="Zip Code"
-                        className="mt-2.5 sm:col-span-2"
+                        className="mt-2.5 sm:col-span-1"
                         type="text"
                         autoComplete="postal-code"
                         error={errors.zipCode?.message}
@@ -146,7 +136,7 @@ export default function RequestConsultation() {
                         {...register('phone')}
                         label="Phone"
                         description="Optional"
-                        className="mt-2.5 sm:col-span-2"
+                        className="mt-2.5 sm:col-span-1"
                         type="tel"
                         autoComplete="tel"
                         error={errors.phone?.message}
