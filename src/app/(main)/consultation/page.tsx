@@ -66,7 +66,7 @@ export default function RequestConsultation() {
 
   return (
     <>
-      <div className="relative bg-white h-full">
+      <div className="relative bg-white h-full border-t">
         <div className="lg:absolute lg:inset-0 lg:left-1/2">
           <img
             className="h-64 w-full bg-gray-50 object-cover sm:h-80 lg:absolute lg:h-full"
@@ -75,7 +75,7 @@ export default function RequestConsultation() {
           />
         </div>
 
-        <div className="pb-10 pt-12 sm:pb-32 sm:pt-24 lg:mx-auto lg:grid lg:max-w-7xl lg:grid-cols-2 lg:pt-32">
+        <div className="pb-10 pt-12 sm:pb-32 sm:pt-16 lg:mx-auto lg:grid lg:max-w-7xl lg:grid-cols-2">
           <div className="px-6 lg:px-8">
             <div className="mb-4 mx-auto max-w-xl lg:mx-0 lg:max-w-lg">
               <Link

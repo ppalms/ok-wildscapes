@@ -1,12 +1,6 @@
 import Link from 'next/link';
 
-export default function ExternalLink({
-  href,
-  text
-}: {
-  href: string;
-  text: string;
-}) {
+export function ExternalLink({ href, text }: { href: string; text: string }) {
   return (
     <>
       <Link
