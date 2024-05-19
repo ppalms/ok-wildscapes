@@ -9,12 +9,9 @@ export function Hero() {
             Bring Your Outdoor Space to Life
           </h1>
           <p className="mt-6 text-lg text-gray-600">
-            Our landscaping company specializes in wildscaping, creating
-            vibrant, eco-friendly habitats using native plants. Attract
-            pollinators and birds while beautifying your yard! Explore our
-            simple yet effective solutions for transforming your garden into a
-            thriving ecosystem. Join us in nurturing nature one garden at a
-            time.
+            Oklahoma Wildscapes specializes in creating vibrant, eco-friendly
+            habitats using native plants. Attract pollinators and birds while
+            beautifying your yard!
           </p>
         </div>
       </Container>
