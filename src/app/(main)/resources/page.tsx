@@ -1,12 +1,11 @@
 import { Container } from '@/components/Container';
-import ExternalLink from '@/components/ExternalLink';
-import Link from 'next/link';
+import { ExternalLink } from '@/components/ExternalLink';
 
 export default function Page() {
   return (
     <>
-      <Container className="relative bg-white h-full py-12 border-t">
-        <div className="mx-auto max-w-xl">
+      <div className="w-full h-full bg-white border-t">
+        <Container className="py-12">
           <h1 className="font-display text-4xl font-bold tracking-tight text-gray-900">
             Resources
           </h1>
@@ -25,8 +24,8 @@ export default function Page() {
               </p>
             </div>
           </section>
-        </div>
-      </Container>
+        </Container>
+      </div>
     </>
   );
 }

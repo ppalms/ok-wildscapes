@@ -1,10 +1,10 @@
 import { Container } from '@/components/Container';
+import { ExternalLink } from '@/components/ExternalLink';
 import { Logomark } from '@/components/Logo';
 import { NavLinks } from '@/components/NavLinks';
 import { JSX, SVGProps } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import ExternalLink from './ExternalLink';
 
 const navigation = [
   {
@@ -53,7 +53,7 @@ export function Footer() {
             {/* ONPN link */}
             <div className="flex flex-col-reverse items-center text-sm">
               <p className="max-w-60 pt-2 text-center">
-                We are a proud member of the Oklahoma Native Plant Network!{' '}
+                We are a proud member of the Oklahoma Native Plant Network{' '}
                 <ExternalLink text="Learn more" href="https://www.onpn.org/" />
               </p>
               <Link href="https://www.onpn.org/" target="_blank">
