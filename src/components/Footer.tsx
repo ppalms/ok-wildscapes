@@ -38,8 +38,9 @@ export function Footer() {
   return (
     <footer className="border-t border-gray-200">
       <Container>
-        <div className="flex flex-col items-start gap-y-12 py-12 lg:flex-row lg:items-center lg:py-16">
+        <div className="flex flex-col items-start gap-y-12 py-12">
           <div className="flex flex-col-reverse sm:flex-row justify-between items-center w-full text-gray-900">
+            {/* OK Wildscapes logo and tag */}
             <div className="flex items-center mt-12 sm:mt-0">
               <Logomark className="h-10 w-10 flex-none fill-cyan-500" />
               <div className="ml-4">
@@ -48,6 +49,7 @@ export function Footer() {
               </div>
             </div>
 
+            {/* ONPN link */}
             <div className="flex flex-col-reverse items-center text-sm">
               <p className="max-w-60 pt-2 text-center">
                 We are a proud member of the Oklahoma Native Plant Network!
@@ -93,20 +95,20 @@ export function Footer() {
             </div>
           </div>
 
-          <nav className="mt-2 flex gap-8">
+          <nav className="flex gap-8">
             <NavLinks />
           </nav>
         </div>
       </Container>
 
-      <div className="w-full border-t border-gray-200">
+      <div className="w-full border-t border-gray-200 bg-emerald-100">
         <div className="mx-auto max-w-7xl px-6 py-8 md:flex md:items-center md:justify-between lg:px-8">
           <div className="flex justify-center space-x-6 md:order-2">
             {navigation.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
-                className="text-gray-400 hover:text-gray-500"
+                className="text-emerald-700 hover:text-gray-500"
               >
                 <span className="sr-only">{item.name}</span>
                 <item.icon className="h-6 w-6" aria-hidden="true" />

@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import { Container } from '@/components/Container';
-import { Carousel } from '@/components/Carousel';
 
 export function Projects() {
   return (
