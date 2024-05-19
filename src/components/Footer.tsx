@@ -1,7 +1,9 @@
-import { JSX, SVGProps } from 'react';
 import { Container } from '@/components/Container';
 import { Logomark } from '@/components/Logo';
 import { NavLinks } from '@/components/NavLinks';
+import { JSX, SVGProps } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 
 const navigation = [
   {
@@ -36,12 +38,58 @@ export function Footer() {
   return (
     <footer className="border-t border-gray-200">
       <Container>
-        <div className="flex flex-col items-start justify-between gap-y-12 py-12 lg:flex-row lg:items-center lg:py-16">
-          <div className="flex items-center text-gray-900">
-            <Logomark className="h-10 w-10 flex-none fill-cyan-500" />
-            <div className="ml-4">
-              <p className="text-base font-semibold">Oklahoma Wildscapes</p>
-              <p className="mt-1 text-sm">Bring your outdoor space to life</p>
+        <div className="flex flex-col items-start gap-y-12 py-12 lg:flex-row lg:items-center lg:py-16">
+          <div className="flex flex-col-reverse sm:flex-row justify-between items-center w-full text-gray-900">
+            <div className="flex items-center mt-12 sm:mt-0">
+              <Logomark className="h-10 w-10 flex-none fill-cyan-500" />
+              <div className="ml-4">
+                <p className="text-base font-semibold">Oklahoma Wildscapes</p>
+                <p className="mt-1 text-sm">Bring your outdoor space to life</p>
+              </div>
+            </div>
+
+            <div className="flex flex-col-reverse items-center text-sm">
+              <p className="max-w-60 pt-2 text-center">
+                We are a proud member of the Oklahoma Native Plant Network!
+                <Link
+                  href="https://www.onpn.org/"
+                  className="text-emerald-600 hover:text-emerald-700"
+                  target="_blank"
+                >
+                  {' '}
+                  Learn more
+                  <span className="inline-flex">
+                    <svg
+                      data-testid="geist-icon"
+                      fill="none"
+                      height="24"
+                      shape-rendering="geometricPrecision"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="1.5"
+                      viewBox="0 0 24 24"
+                      width="24"
+                      style={{
+                        color: 'currentColor',
+                        width: '14px',
+                        height: '14px'
+                      }}
+                    >
+                      <path d="M7 17L17 7"></path>
+                      <path d="M7 7h10v10"></path>
+                    </svg>
+                  </span>
+                </Link>
+              </p>
+              <Link href="https://www.onpn.org/" target="_blank">
+                <Image
+                  src="/images/logos/onpn.png"
+                  width={100}
+                  height={300}
+                  alt="Oklahoma Native Plant Network logo"
+                />
+              </Link>
             </div>
           </div>
 

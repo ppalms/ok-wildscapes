@@ -335,23 +335,6 @@ export default function RequestConsultation() {
                   request! We will review your information and contact you to
                   discuss next steps and how we can bring your vision to life.
                 </p>
-                {/* <p className="mt-4 text-lg text-gray-700">
-                  In the meantime, feel free to browse our{' '}
-                  <a
-                    href="/gallery"
-                    className="text-emerald-600 hover:text-emerald-700"
-                  >
-                    gallery
-                  </a>{' '}
-                  for inspiration or visit our{' '}
-                  <a
-                    href="/faq"
-                    className="text-emerald-600 hover:text-emerald-700"
-                  >
-                    FAQ section
-                  </a>{' '}
-                  for more information about our processes and services.
-                </p> */}
                 <p className="mt-4 text-lg text-gray-700">
                   We look forward to creating a beautiful, sustainable, and
                   lively space with you!
