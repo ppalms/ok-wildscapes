@@ -10,7 +10,7 @@ export function Consultation() {
     >
       <Container className="relative">
         <div className="mx-auto max-w-xl sm:text-center">
-          <h2 className="font-display text-3xl font-bold tracking-tight text-gray-300">
+          <h2 className="font-display text-3xl font-bold tracking-tight text-gray-100">
             Request a Consultation
           </h2>
           <p className="mt-4 text-lg text-gray-300">
