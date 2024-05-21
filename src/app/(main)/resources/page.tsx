@@ -1,5 +1,5 @@
-import { Container } from '@/components/Container';
-import { ExternalLink } from '@/components/ExternalLink';
+import { Container } from '@/ui/main/Container';
+import { ExternalLink } from '@/ui/main/ExternalLink';
 
 export default function Page() {
   return (

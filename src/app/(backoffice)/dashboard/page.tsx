@@ -1,4 +1,4 @@
-import { ArrowDownIcon, ArrowUpIcon } from '@heroicons/react/20/solid';
+// import { ArrowDownIcon, ArrowUpIcon } from '@heroicons/react/20/solid';
 import {
   BanknotesIcon,
   CreditCardIcon,
@@ -32,9 +32,9 @@ const stats = [
   }
 ];
 
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(' ');
-}
+// function classNames(...classes: string[]) {
+//   return classes.filter(Boolean).join(' ');
+// }
 
 export default function Example() {
   return (

@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { TextField } from '@/components/Fields';
+import { TextField } from '@/ui/main/Fields';
 import { PaperAirplaneIcon, ArrowLeftIcon } from '@heroicons/react/20/solid';
 import { Amplify } from 'aws-amplify';
 import { generateClient } from 'aws-amplify/api';

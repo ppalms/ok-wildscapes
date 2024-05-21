@@ -1,10 +1,10 @@
-import { Container } from '@/components/Container';
-import { GridPattern } from '@/components/GridPattern';
+import { Container } from '@/ui/main/Container';
+import { GridPattern } from '@/ui/main/GridPattern';
 
 export function Testimonial({
   id,
   author,
-  children,
+  children
 }: {
   id: string;
   author: { name: string; role: string };
@@ -14,7 +14,8 @@ export function Testimonial({
     <aside
       id={id}
       aria-label={`Testimonial from ${author.name}`}
-      className="relative bg-slate-100 py-16 sm:py-32">
+      className="relative bg-slate-100 py-16 sm:py-32"
+    >
       <div className="text-slate-900/10">
         <GridPattern x="50%" patternTransform="translate(0 80)" />
       </div>
