@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     template: '%s - OK Wildscapes',
     default: 'OK Wildscapes - Bring your outdoor space to life'
   },
-  description: `Bring your outdoor space to life! Our landscaping company specializes in wildscaping, creating vibrant, eco-friendly habitats using native plants. Attract pollinators and birds while beautifying your yard. Explore our simple yet effective solutions for transforming your garden into a thriving ecosystem. Join us in nurturing nature one garden at a time.`
+  description: `Bring your outdoor space to life! We specialize in creating vibrant, eco-friendly habitats using native plants. Attract pollinators and birds while beautifying your yard!`
 };
 
 export default function RootLayout({

@@ -1,9 +1,9 @@
+import Providers from '@/app/providers';
 import PageHeader from '@/ui/backoffice/PageHeader';
 import TopNav from '@/ui/backoffice/TopNav';
-import Providers from '../providers';
-import { cookies } from 'next/headers';
-import { getCurrentUser } from 'aws-amplify/auth/server';
 import { runWithAmplifyServerContext } from '@/utils/amplifyServerUtils';
+import { getCurrentUser } from 'aws-amplify/auth/server';
+import { cookies } from 'next/headers';
 
 export default async function Layout({
   children
