@@ -4,36 +4,22 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ### Prerequisites
 
-- AWS account for personal sandbox
-- AWS config profile called "sandbox" that points to your AWS sandbox account for local dev
+- Start [here](https://github.com/ppalms/ok-wildscapes-api) to deploy the backend stack.
+- Open the AWS AppSync console and copy the API ID for **ok-wildscapes-api**.
+- Replace the `appId` property in **.graphqlconfig.yml** with your API ID.
+- Rename **.env.local.emample** to **.env.local** and replace the environment variables with values from the AWS console
 
-### Deploy to sandbox account
+### API Schema Updates
 
-Open a terminal from the cdk folder and run `aws sso login --profile sandbox`
-
-Uncomment the OkWildscapes AppStack in `cdk\apps\app.ts` and run `yarn deploy`
-
-CDK will output the API base URL to `cdk\output.json`. Copy `.env.local.example` and rename it to `.env.local`. Replace env vars with your API base URL and API key.
+Run `yarn codegen` to get the latest version of your AppSync API schema and re-generate models and resolvers.
 
 ### Next.js
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Run `yarn dev` to start the development server.
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+You can start editing a page by modifying `[path]/page.tsx`. The page auto-updates as you edit the file.
 
 ## Learn More
 
@@ -44,4 +30,4 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-To add existing Amplify API to new Next.js project run `npx @aws-amplify/cli codegen add --apiId appsyncapiid --region us-east-1`
+To initialize Amplify Codegen in a new project: `npx @aws-amplify/cli codegen add --apiId AppSyncAPIID --region us-east-1`
