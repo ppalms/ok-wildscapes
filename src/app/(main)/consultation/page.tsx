@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { TextField } from '@/ui/main/Fields';
@@ -14,7 +15,7 @@ Amplify.configure({
   API: {
     GraphQL: {
       endpoint: process.env.NEXT_PUBLIC_API_URL!,
-      region: 'us-east-1',
+      region: process.env.NEXT_PUBLIC_REGION,
       defaultAuthMode: 'apiKey',
       apiKey: process.env.NEXT_PUBLIC_API_KEY
     }
@@ -58,10 +59,13 @@ export default function RequestConsultation() {
     <>
       <div className="relative bg-white h-full border-t">
         <div className="lg:absolute lg:inset-0 lg:left-1/2">
-          <img
+          <Image
             className="h-64 w-full bg-gray-50 object-cover sm:h-80 lg:absolute lg:h-full"
             src="/images/standing-cypress.jpeg"
+            width={500}
+            height={500}
             alt="Prairie garden"
+            priority
           />
         </div>
 
