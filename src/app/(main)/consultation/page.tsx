@@ -1,20 +1,22 @@
+// TODO refactor to server component
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { TextField } from '@/components/Fields';
+import { TextField } from '@/components/ui/main/Fields';
 import { PaperAirplaneIcon, ArrowLeftIcon } from '@heroicons/react/20/solid';
 import { Amplify } from 'aws-amplify';
 import { generateClient } from 'aws-amplify/api';
 import { requestConsultation } from '@/graphql/mutations';
-import { ProjectSize } from '@/API';
+import { ConsultationRequestInput, ProjectSize } from '@/graphql/types';
 
 Amplify.configure({
   API: {
     GraphQL: {
       endpoint: process.env.NEXT_PUBLIC_API_URL!,
-      region: 'us-east-1',
+      region: process.env.NEXT_PUBLIC_REGION,
       defaultAuthMode: 'apiKey',
       apiKey: process.env.NEXT_PUBLIC_API_KEY
     }
@@ -23,28 +25,18 @@ Amplify.configure({
 
 const client = generateClient();
 
-interface ConsultationRequest {
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
-  zipCode: string;
-  projectSize: ProjectSize;
-  message: string;
-}
-
 export default function RequestConsultation() {
   const {
     register,
     handleSubmit,
     formState: { errors }
-  } = useForm<ConsultationRequest>();
+  } = useForm<ConsultationRequestInput>();
 
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
 
-  const onSubmit: SubmitHandler<ConsultationRequest> = async (
-    request: ConsultationRequest
+  const onSubmit: SubmitHandler<ConsultationRequestInput> = async (
+    request: ConsultationRequestInput
   ) => {
     setSending(true);
 
@@ -68,14 +60,17 @@ export default function RequestConsultation() {
     <>
       <div className="relative bg-white h-full border-t">
         <div className="lg:absolute lg:inset-0 lg:left-1/2">
-          <img
+          <Image
             className="h-64 w-full bg-gray-50 object-cover sm:h-80 lg:absolute lg:h-full"
             src="/images/standing-cypress.jpeg"
+            width={500}
+            height={500}
             alt="Prairie garden"
+            priority
           />
         </div>
 
-        <div className="pb-10 pt-12 sm:pb-32 sm:pt-16 lg:mx-auto lg:grid lg:max-w-7xl lg:grid-cols-2">
+        <div className="pb-10 pt-12 sm:pb-32 lg:mx-auto lg:grid lg:max-w-7xl lg:grid-cols-2">
           <div className="px-6 lg:px-8">
             <div className="mb-4 mx-auto max-w-xl lg:mx-0 lg:max-w-lg">
               <Link
@@ -90,9 +85,9 @@ export default function RequestConsultation() {
             </div>
             {!sent && (
               <div className="mx-auto max-w-xl lg:mx-0 lg:max-w-lg">
-                <h2 className="mb-8 text-3xl font-bold tracking-tight text-gray-900">
+                <h1 className="mb-8 text-3xl font-bold tracking-tight text-gray-900">
                   Let's work together
-                </h2>
+                </h1>
                 <form onSubmit={handleSubmit(onSubmit)} method="POST">
                   <div>
                     {/* Contact info */}
@@ -136,7 +131,7 @@ export default function RequestConsultation() {
                           required: 'Zip code is required'
                         })}
                         label="Zip Code"
-                        className="mt-2.5 sm:col-span-2"
+                        className="mt-2.5 sm:col-span-1"
                         type="text"
                         autoComplete="postal-code"
                         error={errors.zipCode?.message}
@@ -146,7 +141,7 @@ export default function RequestConsultation() {
                         {...register('phone')}
                         label="Phone"
                         description="Optional"
-                        className="mt-2.5 sm:col-span-2"
+                        className="mt-2.5 sm:col-span-1"
                         type="tel"
                         autoComplete="tel"
                         error={errors.phone?.message}

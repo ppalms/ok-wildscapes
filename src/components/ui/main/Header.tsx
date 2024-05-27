@@ -4,9 +4,9 @@ import Link from 'next/link';
 import { Popover } from '@headlessui/react';
 import { AnimatePresence, motion } from 'framer-motion';
 
-import { Container } from '@/components/Container';
-import { Logomark } from '@/components/Logo';
-import { NavLinks } from '@/components/NavLinks';
+import { Container } from '@/components/ui/main/Container';
+import { Logomark } from '@/components/ui/main/Logo';
+import { NavLinks } from '@/components/ui/main/NavLinks';
 
 function MenuIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (

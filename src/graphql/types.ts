@@ -33,6 +33,12 @@ export type ConsultationRequest = {
   message: string,
 };
 
+export type PlantSheet = {
+  __typename: "PlantSheet",
+  fileName: string,
+  lastModified: string,
+};
+
 export type RequestConsultationMutationVariables = {
   consultationRequest: ConsultationRequestInput,
 };
@@ -57,4 +63,16 @@ export type ListConsultationsQuery = {
     projectSize: ProjectSize,
     message: string,
   } | null >,
+};
+
+export type ListPlantSheetsQueryVariables = {
+  maxKeys: number,
+};
+
+export type ListPlantSheetsQuery = {
+  listPlantSheets:  Array< {
+    __typename: "PlantSheet",
+    fileName: string,
+    lastModified: string,
+  } >,
 };

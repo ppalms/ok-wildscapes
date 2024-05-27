@@ -1,4 +1,4 @@
-import { Container } from '@/components/Container';
+import { Container } from '@/components/ui/main/Container';
 
 export function Hero() {
   return (

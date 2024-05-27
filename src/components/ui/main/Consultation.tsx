@@ -1,4 +1,4 @@
-import { Container } from '@/components/Container';
+import { Container } from '@/components/ui/main/Container';
 import { ArrowRightIcon } from '@heroicons/react/20/solid';
 import Link from 'next/link';
 

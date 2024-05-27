@@ -1,11 +1,11 @@
 import clsx from 'clsx';
 
-import { Container } from '@/components/Container';
+import { Container } from '@/components/ui/main/Container';
 import {
   Expandable,
   ExpandableButton,
-  ExpandableItems,
-} from '@/components/Expandable';
+  ExpandableItems
+} from '@/components/ui/main/Expandable';
 
 const testimonials = [
   [
@@ -14,25 +14,25 @@ const testimonials = [
         'Mira’s teaching style is second to none. Everything was easy to follow every step of the way.',
       author: {
         name: 'Antonio Littel',
-        role: 'Frontend Developer',
-      },
+        role: 'Frontend Developer'
+      }
     },
     {
       content:
         'Even though I was excited to learn, I was pessimistic that I wouldn’t actually ever get good enough to design my own icons. I was wrong — this book is all I needed.',
       author: {
         name: 'Lynn Nolan',
-        role: 'Growth Marketer',
-      },
+        role: 'Growth Marketer'
+      }
     },
     {
       content:
         'I’ve been employed as a professional icon designer for years and still learned tons of new tricks that have made my work even better',
       author: {
         name: 'Krista Prosacco',
-        role: 'Professional Designer',
-      },
-    },
+        role: 'Professional Designer'
+      }
+    }
   ],
   [
     {
@@ -40,25 +40,25 @@ const testimonials = [
         'I run an ecommerce store selling rare vintage gummy bears and could never find a good gummy bear icon. Now I can design my own in minutes.',
       author: {
         name: 'Cameron Considine',
-        role: 'Entrepreneur',
-      },
+        role: 'Entrepreneur'
+      }
     },
     {
       content:
         'The complete package is worth it for the weekly teardown videos alone. I’ve learned so much watching Mira take apart other icons and recreate them from scratch.',
       author: {
         name: 'Regina Wisoky',
-        role: 'Design Student',
-      },
+        role: 'Design Student'
+      }
     },
     {
       content:
         'I didn’t expect to find a lot of value in the community but now I’m in there for at least an hour every day picking up tips from other designers.',
       author: {
         name: 'Vernon Cummerata',
-        role: 'UI Engineer',
-      },
-    },
+        role: 'UI Engineer'
+      }
+    }
   ],
   [
     {
@@ -66,31 +66,31 @@ const testimonials = [
         'I couldn’t believe how fast Mira moved in Figma compared to my own workflow. I’m designing icons more accurately in half the time with the shortcuts I learned from her videos.',
       author: {
         name: 'Steven Hackett',
-        role: 'Bootcamp Instructor',
-      },
+        role: 'Bootcamp Instructor'
+      }
     },
     {
       content:
         'I never thought I would enjoy designing icons but using the ideas in this book, it’s become a great way for me to relax while still being creative.',
       author: {
         name: 'Carla Schoen',
-        role: 'Startup Founder',
-      },
+        role: 'Startup Founder'
+      }
     },
     {
       content:
         'All I can say is wow — this is easily the best icon design resource I’ve ever encountered.',
       author: {
         name: 'Leah Kiehn',
-        role: 'Creative Director',
-      },
-    },
-  ],
+        role: 'Creative Director'
+      }
+    }
+  ]
 ];
 
 function Testimonial({
   author,
-  children,
+  children
 }: {
   author: { name: string; role: string };
   children: React.ReactNode;
@@ -132,7 +132,8 @@ export function Testimonials() {
       <Expandable className="group mt-6">
         <ul
           role="list"
-          className="mx-auto grid max-w-2xl grid-cols-1 gap-8 px-4 lg:max-w-7xl lg:grid-cols-3 lg:px-8">
+          className="mx-auto grid max-w-2xl grid-cols-1 gap-8 px-4 lg:max-w-7xl lg:grid-cols-3 lg:px-8"
+        >
           {testimonials
             .map((column) => column[0])
             .map((testimonial, testimonialIndex) => (
@@ -145,7 +146,8 @@ export function Testimonials() {
           {testimonials.map((column, columnIndex) => (
             <li
               key={columnIndex}
-              className="hidden group-data-[expanded]:list-item lg:list-item">
+              className="hidden group-data-[expanded]:list-item lg:list-item"
+            >
               <ul role="list">
                 <ExpandableItems>
                   {column.map((testimonial, testimonialIndex) => (
@@ -155,7 +157,8 @@ export function Testimonials() {
                         testimonialIndex === 0 && 'hidden lg:list-item',
                         testimonialIndex === 1 && 'lg:mt-8',
                         testimonialIndex > 1 && 'mt-8'
-                      )}>
+                      )}
+                    >
                       <Testimonial author={testimonial.author}>
                         {testimonial.content}
                       </Testimonial>

@@ -1,7 +1,7 @@
-import { Container } from '@/components/Container';
-import { ExternalLink } from '@/components/ExternalLink';
-import { Logomark } from '@/components/Logo';
-import { NavLinks } from '@/components/NavLinks';
+import { Container } from '@/components/ui/main/Container';
+import { ExternalLink } from '@/components/ui/main/ExternalLink';
+import { Logomark } from '@/components/ui/main/Logo';
+import { NavLinks } from '@/components/ui/main/NavLinks';
 import { JSX, SVGProps } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';

@@ -4,15 +4,18 @@ projects:
     includes:
       - src/graphql/**/*.ts
     excludes:
-      - ./amplify/**
-      - src/API.ts
+      - .github/**
+      - .next/**
+      - node_modules/**
+      - public/**
+      - src/graphql/types.ts
     extensions:
       amplify:
         codeGenTarget: typescript
-        generatedFileName: src/API.ts
+        generatedFileName: src/graphql/types.ts
         docsFilePath: src/graphql
         region: us-east-1
-        apiId: nll2v3fl65gtpboxhlwytevydy
+        apiId: owfutb6shbdkdn7vxhw7w3mnly
         frontend: javascript
         framework: react
         maxDepth: 2
