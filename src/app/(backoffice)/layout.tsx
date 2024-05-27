@@ -1,7 +1,7 @@
 import Providers from '@/app/providers';
-import PageHeader from '@/ui/backoffice/PageHeader';
-import TopNav from '@/ui/backoffice/TopNav';
-import { runWithAmplifyServerContext } from '@/utils/amplifyServerUtils';
+import PageHeader from '@/components/ui/backoffice/PageHeader';
+import TopNav from '@/components/ui/backoffice/TopNav';
+import { runWithAmplifyServerContext } from '@/utils/amplify-server-utils';
 import { getCurrentUser } from 'aws-amplify/auth/server';
 import { cookies } from 'next/headers';
 
@@ -10,7 +10,7 @@ export default async function Layout({
 }: {
   children: React.ReactNode;
 }) {
-  const currentUser = await runWithAmplifyServerContext({
+  const user = await runWithAmplifyServerContext({
     nextServerContext: { cookies },
     operation: (contextSpec) => getCurrentUser(contextSpec)
   });
@@ -20,7 +20,7 @@ export default async function Layout({
       <Providers>
         <div className="min-h-full">
           <div className="bg-gray-800 pb-32">
-            <TopNav user={currentUser} />
+            <TopNav user={user} />
             <PageHeader />
           </div>
 

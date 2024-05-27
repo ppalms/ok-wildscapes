@@ -9,7 +9,7 @@ const Loading = () => {
 
 const Redirecting = () => {
   const router = useRouter();
-  router.push('/dashboard');
+  router.push('/plant-sheets');
   return <>Redirecting...</>;
 };
 

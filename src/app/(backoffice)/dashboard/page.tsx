@@ -36,7 +36,7 @@ const stats = [
 //   return classes.filter(Boolean).join(' ');
 // }
 
-export default function Example() {
+export default function Dashboard() {
   return (
     <div>
       <h3 className="text-base font-semibold leading-6 text-gray-900">
