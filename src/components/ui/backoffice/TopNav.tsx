@@ -1,8 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import NavLinks from '@/ui/backoffice/NavLinks';
-import { Logomark } from '@/ui/main/Logo';
+import NavLinks from '@/components/ui/backoffice/NavLinks';
+import { Logomark } from '@/components/ui/main/Logo';
 import { Disclosure, Menu } from '@headlessui/react';
 import { BellIcon } from '@heroicons/react/20/solid';
 import MobileNav, { MobileNavButton } from './MobileNav';
@@ -19,7 +19,7 @@ export default function TopNav({ user }: { user: { username: string } }) {
                 <div className="flex h-16 items-center justify-between px-4 sm:px-0">
                   <div className="flex items-center">
                     <div className="flex-shrink-0">
-                      <Link href="/dashboard" aria-label="Home">
+                      <Link href="/plant-sheets" aria-label="Home">
                         <Logomark className="h-10 sm:h-12 w-auto" />
                       </Link>
                     </div>

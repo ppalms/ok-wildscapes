@@ -1,5 +1,5 @@
-import { Container } from '@/ui/main/Container';
-import { GridPattern } from '@/ui/main/GridPattern';
+import { Container } from '@/components/ui/main/Container';
+import { GridPattern } from '@/components/ui/main/GridPattern';
 
 export function Testimonial({
   id,

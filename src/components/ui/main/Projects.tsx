@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { Container } from '@/ui/main/Container';
+import { Container } from '@/components/ui/main/Container';
 
 export function Projects() {
   return (

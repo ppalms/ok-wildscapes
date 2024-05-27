@@ -1,8 +1,8 @@
-import { Carousel } from '@/ui/main/Carousel';
-import { Consultation } from '@/ui/main/Consultation';
-import { Hero } from '@/ui/main/Hero';
-import { Logo } from '@/ui/main/Logo';
-import { Projects } from '@/ui/main/Projects';
+import { Carousel } from '@/components/ui/main/Carousel';
+import { Consultation } from '@/components/ui/main/Consultation';
+import { Hero } from '@/components/ui/main/Hero';
+import { Logo } from '@/components/ui/main/Logo';
+import { Projects } from '@/components/ui/main/Projects';
 
 export default function Home() {
   return (

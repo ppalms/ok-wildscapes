@@ -22,7 +22,7 @@ export const AuthProvider = ({ children }: ProvidersProps) => {
 
   return (
     <>
-      <Authenticator loginMechanisms={['email']} hideSignUp>
+      <Authenticator className="h-full" loginMechanisms={['email']} hideSignUp>
         <Authenticator.Provider>{children}</Authenticator.Provider>
       </Authenticator>
     </>

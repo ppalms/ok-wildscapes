@@ -6,10 +6,10 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 const links = [
-  { name: 'Dashboard', href: '/dashboard', current: true },
-  { name: 'Jobs', href: '/jobs', current: false },
-  { name: 'Ledger', href: '/ledger', current: false },
-  { name: 'Plants', href: '/plants', current: false }
+  // { name: 'Dashboard', href: '/dashboard', current: true },
+  // { name: 'Jobs', href: '/jobs', current: false },
+  // { name: 'Ledger', href: '/ledger', current: false },
+  { name: 'Plant Sheets', href: '/plant-sheets', current: false }
 ];
 
 export default function NavLinks({ mobile }: { mobile?: boolean }) {

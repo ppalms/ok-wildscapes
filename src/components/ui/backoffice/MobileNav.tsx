@@ -2,7 +2,7 @@
 
 import { Disclosure } from '@headlessui/react';
 import { BellIcon, XMarkIcon, Bars3Icon } from '@heroicons/react/20/solid';
-import NavLinks from '@/ui/backoffice/NavLinks';
+import NavLinks from '@/components/ui/backoffice/NavLinks';
 import UserNavLinks from './UserNavLinks';
 
 const user = {

@@ -1,11 +1,11 @@
 import clsx from 'clsx';
 
-import { Container } from '@/ui/main/Container';
+import { Container } from '@/components/ui/main/Container';
 import {
   Expandable,
   ExpandableButton,
   ExpandableItems
-} from '@/ui/main/Expandable';
+} from '@/components/ui/main/Expandable';
 
 const testimonials = [
   [

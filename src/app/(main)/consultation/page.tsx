@@ -1,15 +1,16 @@
+// TODO refactor to server component
 'use client';
 
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { TextField } from '@/ui/main/Fields';
+import { TextField } from '@/components/ui/main/Fields';
 import { PaperAirplaneIcon, ArrowLeftIcon } from '@heroicons/react/20/solid';
 import { Amplify } from 'aws-amplify';
 import { generateClient } from 'aws-amplify/api';
 import { requestConsultation } from '@/graphql/mutations';
-import { ConsultationRequestInput, ProjectSize } from '@/API';
+import { ConsultationRequestInput, ProjectSize } from '@/graphql/types';
 
 Amplify.configure({
   API: {
