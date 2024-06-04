@@ -21,6 +21,11 @@ export enum ProjectSize {
 }
 
 
+export type PresignedUrlResponse = {
+  __typename: "PresignedUrlResponse",
+  url: string,
+};
+
 export type ConsultationRequest = {
   __typename: "ConsultationRequest",
   consultationId: string,
@@ -45,6 +50,18 @@ export type RequestConsultationMutationVariables = {
 
 export type RequestConsultationMutation = {
   requestConsultation?: string | null,
+};
+
+export type GetPresignedUrlMutationVariables = {
+  key: string,
+  title: string,
+};
+
+export type GetPresignedUrlMutation = {
+  getPresignedUrl?:  {
+    __typename: "PresignedUrlResponse",
+    url: string,
+  } | null,
 };
 
 export type ListConsultationsQueryVariables = {

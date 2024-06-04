@@ -15,3 +15,13 @@ export const requestConsultation = /* GraphQL */ `mutation RequestConsultation($
   APITypes.RequestConsultationMutationVariables,
   APITypes.RequestConsultationMutation
 >;
+export const getPresignedUrl = /* GraphQL */ `mutation GetPresignedUrl($key: String!, $title: String!) {
+  getPresignedUrl(key: $key, title: $title) {
+    url
+    __typename
+  }
+}
+` as GeneratedMutation<
+  APITypes.GetPresignedUrlMutationVariables,
+  APITypes.GetPresignedUrlMutation
+>;
