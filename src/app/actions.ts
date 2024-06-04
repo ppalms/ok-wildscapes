@@ -14,11 +14,12 @@ const allowedFileTypes = [
   'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
 ];
 const formSchema = z.object({
-  // plantSheet: z
-  //   .instanceof(File)
-  //   .refine((doc) => allowedFileTypes.some((allowed) => doc.type === allowed), {
-  //     message: 'Invalid file type. Must be PDF or Word document.'
-  //   }),
+  plantSheet: z.object({
+    name: z.string(),
+    type: z.string().refine((type) => allowedFileTypes.includes(type), {
+      message: 'Invalid file type. Must be PDF or Word document.'
+    })
+  }),
   title: z
     .string()
     .min(1, 'Title is required.')
@@ -42,60 +43,56 @@ export async function uploadPlantSheet(
   }
 
   const validatedFields = formSchema.safeParse({
-    // plantSheet: formData.get('plantSheet'),
+    plantSheet: formData.get('plantSheet'),
     title: formData.get('title')
   });
 
   if (!validatedFields.success) {
     return {
       errors: validatedFields.error.flatten().fieldErrors,
-      message: 'Missing fields. Failed to upload document.'
+      message: 'Failed to upload document.'
     };
   }
 
-  const { /*plantSheet,*/ title } = formSchema.parse({
-    // plantSheet: formData.get('plantSheet'),
+  const { plantSheet, title } = formSchema.parse({
+    plantSheet: formData.get('plantSheet'),
     title: formData.get('title')
   });
-  // console.log(`Uploading document ${plantSheet.name}`);
-  console.log(`Uploading document ${title}`);
+  console.log(`Uploading document ${plantSheet.name}`);
 
   try {
-    //   console.log('Getting presigned URL');
-    //   const { data, errors } = await cookiesClient.graphql({
-    //     query: getPresignedUrl,
-    //     variables: {
-    //       key: `plant-sheets/${plantSheet.name}`,
-    //       title
-    //     }
-    //   });
+    console.log('Getting presigned URL');
+    const { data, errors } = await cookiesClient.graphql({
+      query: getPresignedUrl,
+      variables: {
+        key: `plant-sheets/${plantSheet.name}`,
+        title
+      }
+    });
 
-    //   if (errors) {
-    //     errors.map(({ message }) => console.error(message));
-    //     return {
-    //       message: 'Server error: Failed to upload document.'
-    //     };
-    //   }
+    if (errors) {
+      errors.map(({ message }) => console.error(message));
+      return {
+        message: 'Server error: Failed to upload document.'
+      };
+    }
 
-    //   console.log(
-    //     `Uploading document using presigned URL\n${data.getPresignedUrl.url}`
-    //   );
-    //   const response = await fetch(data.getPresignedUrl.url, {
-    //     method: 'PUT',
-    //     body: plantSheet
-    //   });
-    //   console.log(`S3 put response: ${response.status}`);
-    //   if (response.status !== 200) {
-    //     return {
-    //       errors: {},
-    //       message: `Server error: ${response.statusText}`
-    //     };
-    //   }
+    console.log(
+      `Uploading document using presigned URL\n${data.getPresignedUrl.url}`
+    );
+    const response = await fetch(data.getPresignedUrl.url, {
+      method: 'PUT',
+      body: plantSheet as any
+    });
+    console.log(`S3 put response: ${response.status}`);
+    if (response.status !== 200) {
+      return {
+        errors: {},
+        message: `Server error: ${response.statusText}`
+      };
+    }
 
-    //   revalidatePath('/plant-sheets');
-    return {
-      message: 'TODO - REMOVE ME.'
-    };
+    revalidatePath('/plant-sheets');
   } catch (error) {
     console.error(error);
     return {
