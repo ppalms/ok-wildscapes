@@ -13,6 +13,7 @@
   "dependencies": {
     "@aws-amplify/adapter-nextjs": "^1.1.8",
     "@aws-amplify/ui-react": "^6.1.12",
+    "@aws-sdk/client-s3": "^3.588.0",
     "@headlessui/react": "^1.7.15",
     "@headlessui/tailwindcss": "^0.2.0",
     "@heroicons/react": "^2.0.18",
@@ -33,7 +34,8 @@
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.48.2",
     "tailwind-merge": "^2.3.0",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@types/node": "^20",

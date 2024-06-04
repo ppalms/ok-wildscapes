@@ -1,9 +1,6 @@
 import { createServerRunner } from '@aws-amplify/adapter-nextjs';
 import { generateServerClientUsingCookies } from '@aws-amplify/adapter-nextjs/api';
-import { AuthUser } from '@aws-amplify/auth';
 import { ResourcesConfig } from 'aws-amplify';
-import { getCurrentUser } from 'aws-amplify/auth/server';
-import { ReadonlyRequestCookies } from 'next/dist/server/web/spec-extension/adapters/request-cookies';
 import { cookies } from 'next/headers';
 
 const config: ResourcesConfig = {
@@ -32,16 +29,3 @@ export const cookiesClient = generateServerClientUsingCookies({
 export const { runWithAmplifyServerContext } = createServerRunner({
   config
 });
-
-// TODO fix build error
-export async function getCurrentUserServer(): Promise<AuthUser | undefined> {
-  try {
-    const currentUser = await runWithAmplifyServerContext({
-      nextServerContext: { cookies },
-      operation: (contextSpec) => getCurrentUser(contextSpec)
-    });
-    return currentUser;
-  } catch (error) {
-    console.error(error);
-  }
-}
