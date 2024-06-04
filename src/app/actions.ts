@@ -25,7 +25,7 @@ const formSchema = z.object({
     .max(256, 'Title must not exceed 256 characters')
 });
 
-type State = {
+export type State = {
   errors?: {
     plantSheet?: string[];
     title?: string[];

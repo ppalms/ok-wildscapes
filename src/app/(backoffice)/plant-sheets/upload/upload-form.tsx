@@ -1,10 +1,12 @@
 'use client';
 
-import { uploadPlantSheet } from '@/app/actions';
+import { State, uploadPlantSheet } from '@/app/actions';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { cn } from '@/lib/utils';
+import { ArrowUpTrayIcon } from '@heroicons/react/20/solid';
 import Link from 'next/link';
-import { useFormState } from 'react-dom';
+import { useFormState, useFormStatus } from 'react-dom';
 
 const Form = () => {
   const initialState = { message: null, errors: {} };
@@ -12,6 +14,18 @@ const Form = () => {
 
   return (
     <form action={dispatch}>
+      <FormFields state={state} />
+
+      <Buttons />
+    </form>
+  );
+};
+
+function FormFields({ state }: { state: State }) {
+  const { pending } = useFormStatus();
+
+  return (
+    <fieldset disabled={pending}>
       <div className="py-4 md:py-6">
         {/* Plant sheet document */}
         <div className="mb-4">
@@ -77,17 +91,39 @@ const Form = () => {
           </p>
         )}
       </div>
+    </fieldset>
+  );
+}
+
+function Buttons() {
+  const { pending } = useFormStatus();
+
+  return (
+    <>
       <div className="mt-6 flex justify-end gap-4">
         <Link
           href="/plant-sheets"
-          className="flex h-10 items-center rounded-lg bg-gray-100 px-4 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-200"
+          className={cn(
+            'flex h-10 items-center rounded-lg bg-gray-100 px-4 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-200',
+            pending && 'pointer-events-none'
+          )}
+          aria-disabled={pending}
         >
           Cancel
         </Link>
-        <Button type="submit">Upload Plant Sheet</Button>
+        {pending ? (
+          <Button aria-disabled disabled>
+            Uploading...
+          </Button>
+        ) : (
+          <Button>
+            Upload{' '}
+            <ArrowUpTrayIcon className="-mr-1 ml-1 h-5 w-5 text-gray-50" />
+          </Button>
+        )}
       </div>
-    </form>
+    </>
   );
-};
+}
 
 export default Form;
