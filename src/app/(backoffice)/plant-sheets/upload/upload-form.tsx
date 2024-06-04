@@ -28,7 +28,7 @@ function FormFields({ state }: { state: State }) {
     <fieldset disabled={pending}>
       <div className="py-4 md:py-6">
         {/* Plant sheet document */}
-        <div className="mb-4">
+        {/* <div className="mb-4">
           <label
             htmlFor="plantSheet"
             className="mb-2 block text-sm font-medium"
@@ -55,7 +55,7 @@ function FormFields({ state }: { state: State }) {
                 ))}
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* Title */}
         <div className="mb-4">
@@ -136,7 +136,7 @@ function Buttons() {
             </svg>
           </Button>
         ) : (
-          <Button>
+          <Button type="submit">
             Upload <ArrowUpTrayIcon className="ml-1 h-5 w-5 text-gray-50" />
           </Button>
         )}
