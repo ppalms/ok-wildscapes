@@ -21,8 +21,8 @@ const formSchema = z.object({
     }),
   title: z
     .string()
-    .min(1, 'Title is required')
-    .max(256, 'Title must not exceed 256 characters')
+    .min(1, 'Title is required.')
+    .max(256, 'Title must not exceed 256 characters.')
 });
 
 export type State = {
@@ -37,6 +37,9 @@ export async function uploadPlantSheet(
   _prevState: State,
   formData: FormData
 ): Promise<State> {
+  for (const value of formData.values()) {
+    console.log(value);
+  }
   const validatedFields = formSchema.safeParse({
     plantSheet: formData.get('plantSheet'),
     title: formData.get('title')
@@ -53,8 +56,10 @@ export async function uploadPlantSheet(
     plantSheet: formData.get('plantSheet'),
     title: formData.get('title')
   });
+  console.log(`Uploading document ${plantSheet.name}`);
 
   try {
+    console.log('Getting presigned URL');
     const { data, errors } = await cookiesClient.graphql({
       query: getPresignedUrl,
       variables: {
@@ -70,10 +75,14 @@ export async function uploadPlantSheet(
       };
     }
 
+    console.log(
+      `Uploading document using presigned URL\n${data.getPresignedUrl.url}`
+    );
     const response = await fetch(data.getPresignedUrl.url, {
       method: 'PUT',
       body: plantSheet
     });
+    console.log(`S3 put response: ${response.status}`);
     if (response.status !== 200) {
       return {
         errors: {},

@@ -23,6 +23,7 @@ const PlantSheets = async () => {
           </Button>
         </div>
       </div>
+
       <DataTable columns={columns} data={plantSheets} />
     </div>
   );
