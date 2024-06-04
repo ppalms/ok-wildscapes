@@ -8,7 +8,7 @@ import { ArrowUpTrayIcon } from '@heroicons/react/20/solid';
 import Link from 'next/link';
 import { useFormState, useFormStatus } from 'react-dom';
 
-const Form = () => {
+const UploadForm = () => {
   const initialState = { message: null, errors: {} };
   const [state, dispatch] = useFormState(uploadPlantSheet, initialState);
 
@@ -126,4 +126,4 @@ function Buttons() {
   );
 }
 
-export default Form;
+export default UploadForm;

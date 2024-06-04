@@ -1,6 +1,6 @@
 'use client';
 
-import Form from './upload-form';
+import UploadForm from './upload-form';
 
 const Page = () => {
   return (
@@ -11,7 +11,8 @@ const Page = () => {
             New Plant Sheet
           </h1>
         </div>
-        <Form />
+
+        <UploadForm />
       </div>
     </>
   );
