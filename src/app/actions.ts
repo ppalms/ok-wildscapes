@@ -14,11 +14,12 @@ const allowedFileTypes = [
   'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
 ];
 const formSchema = z.object({
-  plantSheet: z
-    .instanceof(File)
-    .refine((doc) => allowedFileTypes.some((allowed) => doc.type === allowed), {
+  plantSheet: z.object({
+    name: z.string(),
+    type: z.string().refine((type) => allowedFileTypes.includes(type), {
       message: 'Invalid file type. Must be PDF or Word document.'
-    }),
+    })
+  }),
   title: z
     .string()
     .min(1, 'Title is required.')
@@ -40,6 +41,7 @@ export async function uploadPlantSheet(
   for (const value of formData.values()) {
     console.log(value);
   }
+
   const validatedFields = formSchema.safeParse({
     plantSheet: formData.get('plantSheet'),
     title: formData.get('title')
@@ -48,7 +50,7 @@ export async function uploadPlantSheet(
   if (!validatedFields.success) {
     return {
       errors: validatedFields.error.flatten().fieldErrors,
-      message: 'Missing fields. Failed to upload document.'
+      message: 'Failed to upload document.'
     };
   }
 
@@ -80,7 +82,7 @@ export async function uploadPlantSheet(
     );
     const response = await fetch(data.getPresignedUrl.url, {
       method: 'PUT',
-      body: plantSheet
+      body: plantSheet as any
     });
     console.log(`S3 put response: ${response.status}`);
     if (response.status !== 200) {
