@@ -1,10 +1,10 @@
 'use client';
 
-import Link from 'next/link';
 import NavLinks from '@/components/ui/backoffice/NavLinks';
 import { Logomark } from '@/components/ui/main/Logo';
 import { Disclosure, Menu } from '@headlessui/react';
 import { BellIcon } from '@heroicons/react/20/solid';
+import Link from 'next/link';
 import MobileNav, { MobileNavButton } from './MobileNav';
 import UserNavLinks from './UserNavLinks';
 
@@ -65,7 +65,7 @@ export default function TopNav({ user }: { user: { username: string } }) {
               </div>
             </div>
 
-            <MobileNav />
+            <MobileNav user={user} />
           </>
         )}
       </Disclosure>

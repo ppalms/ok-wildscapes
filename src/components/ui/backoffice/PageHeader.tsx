@@ -6,7 +6,8 @@ const headers = new Map([
   ['/dashboard', 'Dashboard'],
   ['/jobs', 'Jobs'],
   ['/ledger', 'Ledger'],
-  ['/plants', 'Plants']
+  ['/plant-sheets', 'Plant Sheets'],
+  ['/plant-sheets/upload', 'Upload Plant Sheet']
 ]);
 
 export default function PageHeader() {

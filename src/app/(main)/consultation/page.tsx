@@ -86,7 +86,7 @@ export default function RequestConsultation() {
             {!sent && (
               <div className="mx-auto max-w-xl lg:mx-0 lg:max-w-lg">
                 <h1 className="mb-8 text-3xl font-bold tracking-tight text-gray-900">
-                  Let's work together
+                  Let&apos;s work together
                 </h1>
                 <form onSubmit={handleSubmit(onSubmit)} method="POST">
                   <div>

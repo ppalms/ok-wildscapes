@@ -14,10 +14,7 @@ const PlantSheets = async () => {
   return (
     <div className="container mx-auto">
       <div className="flex flex-col sm:flex-row items-baseline justify-between">
-        <h1 className="scroll-m-20 text-3xl font-extrabold tracking-tight mt-8 mb-4 lg:text-5xl">
-          Plant Sheets
-        </h1>
-        <div className="ml-auto">
+        <div className="sm:ml-auto">
           <Button>
             <Link href="/plant-sheets/upload">Upload Plant Sheet</Link>
           </Button>

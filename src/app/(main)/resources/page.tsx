@@ -39,7 +39,7 @@ export default function Page() {
               </p>
               <p className="pt-2">
                 Learn about invasive plants at the Oklahoma Invasive Plant
-                Council's{' '}
+                Council&apos;s{' '}
                 <ExternalLink
                   text="invasive plant database"
                   href="https://www.okinvasives.org/plants-database"

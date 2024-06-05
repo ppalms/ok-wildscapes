@@ -4,15 +4,9 @@ import { Disclosure } from '@headlessui/react';
 import { BellIcon, XMarkIcon, Bars3Icon } from '@heroicons/react/20/solid';
 import NavLinks from '@/components/ui/backoffice/NavLinks';
 import UserNavLinks from './UserNavLinks';
+import Image from 'next/image';
 
-const user = {
-  name: 'Tom Cook',
-  email: 'tom@example.com',
-  imageUrl:
-    'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
-};
-
-export default function MobileNav() {
+export default function MobileNav({ user }: { user: { username: string } }) {
   return (
     <>
       <Disclosure.Panel className="border-b border-gray-700 md:hidden">
@@ -22,19 +16,21 @@ export default function MobileNav() {
         <div className="border-t border-gray-700 pb-3 pt-4">
           <div className="flex items-center px-5">
             <div className="flex-shrink-0">
-              <img
+              <Image
+                width={40}
+                height={40}
                 className="h-10 w-10 rounded-full"
-                src={user.imageUrl}
-                alt=""
+                src="/images/indian-blanket.jpg"
+                alt="User avatar"
               />
             </div>
             <div className="ml-3">
               <div className="text-base font-medium leading-none text-white">
-                {user.name}
+                {user.username}
               </div>
-              <div className="text-sm font-medium leading-none text-gray-400">
+              {/* <div className="text-sm font-medium leading-none text-gray-400">
                 {user.email}
-              </div>
+              </div> */}
             </div>
             <button
               type="button"
