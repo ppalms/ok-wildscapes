@@ -45,6 +45,13 @@ export default function Page() {
                   href="https://www.okinvasives.org/plants-database"
                 />
               </p>
+              <p className="pt-2">
+                Find native keystone plants for your garden at{' '}
+                <ExternalLink
+                  text="Homegrown National Park"
+                  href="https://homegrownnationalpark.org/keystone-plant-guides/"
+                />
+              </p>
             </div>
           </section>
 
