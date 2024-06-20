@@ -2,7 +2,7 @@ import { Container } from '@/components/ui/main/Container';
 
 export function Hero() {
   return (
-    <div className="overflow-hidden py-20 sm:py-32 lg:pb-32 xl:pb-36">
+    <div className="overflow-hidden py-20 lg:pb-32 xl:pb-36">
       <Container className="relative">
         <div className="mx-auto max-w-xl sm:text-center">
           <h1 className="font-display text-3xl font-bold tracking-tight text-gray-900">

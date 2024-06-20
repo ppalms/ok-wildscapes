@@ -19,7 +19,7 @@ export function Projects() {
           <div className="p-8">
             <div className="flex items-center justify-center">
               <a
-                className="p-4 rounded-2xl shadow-neutral-700 shadow-lg border-4 border-dashed border-emerald-800 bg-emerald-600 hover:bg-emerald-700"
+                className="p-4 rounded-2xl shadow-neutral-700 shadow-lg border-4 border-dashed border-emerald-800 text-gray-600 bg-okw-green-light hover:text-gray-100 hover:bg-okw-green"
                 href="https://www.instagram.com/oklahomawildscapes/?utm_source=ig_embed&amp;utm_campaign=loading"
                 target="_blank"
               >
@@ -31,7 +31,7 @@ export function Projects() {
                   width={32}
                   height={32}
                 />
-                <span className="script text-2xl sm:text-3xl text-white">
+                <span className="script text-2xl sm:text-3xl">
                   @oklahomawildscapes
                 </span>
               </a>

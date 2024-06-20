@@ -37,7 +37,7 @@ const navigation = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-gray-200 bg-neutral-50">
+    <footer className="border-t border-gray-200 bg-gray-50">
       <Container>
         <div className="flex flex-col items-start gap-y-12 py-12">
           <div className="flex flex-col-reverse sm:flex-row justify-between items-center w-full text-gray-900">
@@ -73,14 +73,14 @@ export function Footer() {
         </div>
       </Container>
 
-      <div className="w-full border-t border-gray-200 bg-emerald-100">
+      <div className="w-full border-t border-gray-200 bg-okw-green-light">
         <div className="mx-auto max-w-7xl px-6 py-8 md:flex md:items-center md:justify-between lg:px-8">
           <div className="flex justify-center space-x-6 md:order-2">
             {navigation.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
-                className="text-emerald-700 hover:text-gray-500"
+                className="text-emerald-700 hover:text-gray-700"
               >
                 <span className="sr-only">{item.name}</span>
                 <item.icon className="h-6 w-6" aria-hidden="true" />
@@ -88,7 +88,7 @@ export function Footer() {
             ))}
           </div>
           <div className="mt-8 md:order-1 md:mt-0">
-            <p className="text-center text-xs leading-5 text-gray-500">
+            <p className="text-center text-xs leading-5 text-gray-700">
               &copy; Copyright 2024. All rights reserved.
             </p>
           </div>

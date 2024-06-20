@@ -10,6 +10,37 @@ import {
 } from './CarouselArrowButtons';
 import { DotButton, useDotButton } from './CarouselDotButton';
 
+const images = [
+  {
+    src: '/images/carousel/mockingbird-entrance.jpeg',
+    alt: 'Path through meadow garden to front door'
+  },
+  {
+    src: '/images/carousel/mockingbird-meadow-1.jpeg',
+    alt: 'Meadow garden bed'
+  },
+  {
+    src: '/images/carousel/mockingbird-meadow-2.jpeg',
+    alt: 'Meadow garden bed'
+  },
+  {
+    src: '/images/carousel/mockingbird-meadow-3.jpeg',
+    alt: 'Meadow garden bed'
+  },
+  {
+    src: '/images/carousel/mockingbird-spring-bloomers.jpeg',
+    alt: 'Winecup and poppy mallow'
+  },
+  {
+    src: '/images/carousel/mockingbird-blue-bonnet.jpeg',
+    alt: 'Texas bluebonnet'
+  },
+  {
+    src: '/images/carousel/mockingbird-coreopsis.jpeg',
+    alt: 'Coreopsis'
+  }
+];
+
 export const Carousel = () => {
   const [emblaRef, emblaApi] = useEmblaCarousel(
     {
@@ -34,70 +65,17 @@ export const Carousel = () => {
   return (
     <div className="embla" ref={emblaRef}>
       <div className="embla-container">
-        <div className="embla-slide">
-          <Image
-            src="/images/carousel/mockingbird-entrance.jpeg"
-            className="carousel-image"
-            alt="Path through meadow garden to front door"
-            fill={true}
-          />
-        </div>
-        <div className="embla-slide">
-          <Image
-            src="/images/carousel/mockingbird-meadow-1.jpeg"
-            className="carousel-image"
-            alt="Meadow garden bed"
-            fill={true}
-          />
-        </div>
-        <div className="embla-slide">
-          <Image
-            src="/images/carousel/mockingbird-meadow-2.jpeg"
-            className="carousel-image"
-            alt="Meadow garden bed"
-            fill={true}
-          />
-        </div>
-        <div className="embla-slide">
-          <Image
-            src="/images/carousel/mockingbird-meadow-3.jpeg"
-            className="carousel-image"
-            alt="Meadow garden bed"
-            fill={true}
-          />
-        </div>
-        <div className="embla-slide">
-          <Image
-            src="/images/carousel/mockingbird-spring-bloomers.jpeg"
-            className="carousel-image"
-            alt="Winecup and poppy mallow"
-            fill={true}
-          />
-        </div>
-        <div className="embla-slide">
-          <Image
-            src="/images/carousel/mockingbird-blue-bonnet.jpeg"
-            className="carousel-image"
-            alt="Texas bluebonnet"
-            fill={true}
-          />
-        </div>
-        <div className="embla-slide">
-          <Image
-            src="/images/carousel/mockingbird-coreopsis.jpeg"
-            className="carousel-image"
-            alt="Plains Coreopsis"
-            fill={true}
-          />
-        </div>
-        <div className="embla-slide">
-          <Image
-            src="/images/carousel/mockingbird-bouquet.jpeg"
-            className="carousel-image"
-            alt="Wildflower bouquet"
-            fill={true}
-          />
-        </div>
+        {/* Slides */}
+        {images.map((image, index) => (
+          <div className="embla-slide" key={index}>
+            <Image
+              src={image.src}
+              className="carousel-image"
+              alt={image.alt}
+              fill={true}
+            />
+          </div>
+        ))}
       </div>
 
       <div className="embla-buttons">
