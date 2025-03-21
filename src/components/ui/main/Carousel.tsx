@@ -12,32 +12,34 @@ import { DotButton, useDotButton } from './CarouselDotButton';
 
 const images = [
   {
-    src: '/images/carousel/mockingbird-entrance.jpeg',
-    alt: 'Path through meadow garden to front door'
+    src: '/images/carousel/1.jpg'
   },
   {
-    src: '/images/carousel/mockingbird-meadow-1.jpeg',
-    alt: 'Meadow garden bed'
+    src: '/images/carousel/2.jpg'
   },
   {
-    src: '/images/carousel/mockingbird-meadow-2.jpeg',
-    alt: 'Meadow garden bed'
+    src: '/images/carousel/3.jpg'
   },
   {
-    src: '/images/carousel/mockingbird-meadow-3.jpeg',
-    alt: 'Meadow garden bed'
+    src: '/images/carousel/4.jpg'
   },
   {
-    src: '/images/carousel/mockingbird-spring-bloomers.jpeg',
-    alt: 'Winecup and poppy mallow'
+    src: '/images/carousel/5.jpg'
   },
   {
-    src: '/images/carousel/mockingbird-blue-bonnet.jpeg',
-    alt: 'Texas bluebonnet'
+    src: '/images/carousel/6.jpg'
   },
   {
-    src: '/images/carousel/mockingbird-coreopsis.jpeg',
-    alt: 'Coreopsis'
+    src: '/images/carousel/7.jpg'
+  },
+  {
+    src: '/images/carousel/8.jpg'
+  },
+  {
+    src: '/images/carousel/9.jpg'
+  },
+  {
+    src: '/images/carousel/10.jpg'
   }
 ];
 
@@ -71,7 +73,7 @@ export const Carousel = () => {
             <Image
               src={image.src}
               className="carousel-image"
-              alt={image.alt}
+              alt=""
               fill={true}
             />
           </div>
