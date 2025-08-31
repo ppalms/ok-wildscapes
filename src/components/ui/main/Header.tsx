@@ -43,7 +43,7 @@ function MobileNavLink(
   return (
     <Popover.Button
       as={Link}
-      className="block text-base leading-7 tracking-tight text-gray-700"
+      className="nav-link-mobile"
       {...props}
     />
   );
@@ -67,7 +67,7 @@ export function Header() {
               {({ open }) => (
                 <>
                   <Popover.Button
-                    className="relative z-10 -m-2 inline-flex items-center rounded-lg stroke-gray-900 p-2 hover:bg-gray-300/50 hover:stroke-gray-600 active:stroke-gray-900 ui-not-focus-visible:outline-none"
+                    className="relative z-10 -m-2 inline-flex items-center rounded-lg stroke-gray-900 p-3 hover:bg-okw-green/10 hover:stroke-okw-green active:stroke-okw-green-darker transition-all duration-200 ui-not-focus-visible:outline-none min-h-[44px] min-w-[44px]"
                     aria-label="Toggle site navigation"
                   >
                     {({ open }) =>
@@ -99,9 +99,9 @@ export function Header() {
                             y: -32,
                             transition: { duration: 0.2 }
                           }}
-                          className="absolute inset-x-0 top-0 z-0 origin-top rounded-b-2xl bg-gray-50 px-6 pb-6 pt-32 shadow-2xl shadow-gray-900/20"
+                          className="absolute inset-x-0 top-0 z-0 origin-top rounded-b-2xl bg-white px-6 pb-6 pt-32 shadow-2xl shadow-gray-900/20 border border-gray-200"
                         >
-                          <div className="space-y-4">
+                          <div className="space-y-2">
                             <MobileNavLink href="/">Home</MobileNavLink>
                             <MobileNavLink href="/resources">
                               Resources
@@ -110,12 +110,14 @@ export function Header() {
                               Consultation
                             </MobileNavLink>
                           </div>
-                          {/* TODO <div className="mt-8 flex flex-col gap-4">
-                            <Button href="/login" variant="outline">
-                              Log in
-                            </Button>
-                            <Button href="#">Download the app</Button>
-                          </div> */}
+                          <div className="mt-6 pt-4 border-t border-gray-200">
+                            <a 
+                              href="/consultation" 
+                              className="btn-primary w-full justify-center"
+                            >
+                              Get Free Consultation
+                            </a>
+                          </div>
                         </Popover.Panel>
                       </>
                     )}

@@ -80,12 +80,11 @@ export default function RequestConsultation() {
             <div className="mb-4 mx-auto max-w-xl lg:mx-0 lg:max-w-lg">
               <Link
                 href="/"
-                className="text-emerald-950 hover:text-emerald-700"
+                className="inline-flex items-center text-okw-green hover:text-okw-green-darker transition-colors duration-200 mb-6"
                 aria-label="Home"
               >
-                <div className="flex items-center">
-                  <ArrowLeftIcon className="h-5 w-5 mr-1" /> Home
-                </div>
+                <ArrowLeftIcon className="h-4 w-4 mr-2" /> 
+                <span className="text-sm font-medium">Back to Home</span>
               </Link>
             </div>
             {!sent && (
@@ -116,7 +115,7 @@ export default function RequestConsultation() {
                     </div>
                   </div>
                 )}
-                <h1 className="mb-8 text-3xl font-bold tracking-tight text-gray-900">
+                <h1 className="heading-hero text-gray-900 mb-8">
                   Let&apos;s work together
                 </h1>
                 <form onSubmit={handleSubmit(onSubmit)} method="POST">
@@ -309,10 +308,10 @@ export default function RequestConsultation() {
                     </fieldset>
                   </div>
 
-                  <div className="my-6 border-t flex flex-row justify-end border-gray-900/10 pt-8">
+                  <div className="my-8 border-t border-gray-200 pt-8">
                     <button
                       type="submit"
-                      className="rounded-md flex items-center bg-emerald-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-emerald-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600"
+                      className="btn-primary w-full sm:w-auto"
                       disabled={sending}
                     >
                       {sending ? (
