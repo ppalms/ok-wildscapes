@@ -38,10 +38,6 @@ export async function uploadPlantSheet(
   _prevState: State,
   formData: FormData
 ): Promise<State> {
-  for (const value of formData.values()) {
-    console.log(value);
-  }
-
   const validatedFields = formSchema.safeParse({
     plantSheet: formData.get('plantSheet'),
     title: formData.get('title')
