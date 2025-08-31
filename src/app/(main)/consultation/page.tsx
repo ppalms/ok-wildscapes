@@ -11,6 +11,7 @@ import { Amplify } from 'aws-amplify';
 import { generateClient } from 'aws-amplify/api';
 import { requestConsultation } from '@/graphql/mutations';
 import { ConsultationRequestInput, ProjectSize } from '@/graphql/types';
+import { ArrowUpRightFromSquareIcon } from 'lucide-react';
 
 Amplify.configure({
   API: {
@@ -34,11 +35,13 @@ export default function RequestConsultation() {
 
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const onSubmit: SubmitHandler<ConsultationRequestInput> = async (
     request: ConsultationRequestInput
   ) => {
     setSending(true);
+    setError(null);
 
     try {
       const result = await client.graphql({
@@ -46,11 +49,13 @@ export default function RequestConsultation() {
         variables: { consultationRequest: request }
       });
       if (result.errors) {
-        // TODO
+        setError('We encountered an issue submitting your request.');
+        return;
       }
       setSent(true);
     } catch (e) {
-      // TODO
+      console.error('Form submission error:', e);
+      setError('We encountered an issue submitting your request.');
     } finally {
       setSending(false);
     }
@@ -85,6 +90,32 @@ export default function RequestConsultation() {
             </div>
             {!sent && (
               <div className="mx-auto max-w-xl lg:mx-0 lg:max-w-lg">
+                {error && (
+                  <div className="mb-6 rounded-md bg-red-50 p-4">
+                    <div className="flex">
+                      <div className="ml-3">
+                        <h3 className="text-sm font-medium text-red-800">
+                          Submission Failed
+                        </h3>
+                        <div className="mt-2 text-sm text-red-700">
+                          <p>
+                            We encountered an issue submitting your request.
+                            Please try again or{' '}
+                            <span className="flex gap-1 items-center">
+                              <a
+                                href="https://www.facebook.com/profile.php?id=61552012025895"
+                                className="underline"
+                              >
+                                contact us on Facebook{' '}
+                              </a>
+                              <ArrowUpRightFromSquareIcon className="size-4" />
+                            </span>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
                 <h1 className="mb-8 text-3xl font-bold tracking-tight text-gray-900">
                   Let&apos;s work together
                 </h1>
