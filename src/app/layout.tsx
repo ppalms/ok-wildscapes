@@ -1,13 +1,13 @@
 import '@/styles/globals.css';
 import { type Metadata } from 'next';
-// import { Inter as FontSans } from 'next/font/google';
+import { Inter as FontSans } from 'next/font/google';
 import { cn } from '@/lib/utils';
 
-// const fontSans = FontSans({
-//   subsets: ['latin'],
-//   display: 'swap',
-//   variable: '--font-sans'
-// });
+const fontSans = FontSans({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-sans'
+});
 
 export const metadata: Metadata = {
   title: {
@@ -26,8 +26,8 @@ export default function RootLayout({
     <html
       lang="en"
       className={cn(
-        'h-full bg-background font-sans antialiased'
-        // fontSans.variable
+        'h-full bg-background font-sans antialiased',
+        fontSans.variable
       )}
       suppressHydrationWarning
     >

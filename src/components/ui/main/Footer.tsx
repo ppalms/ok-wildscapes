@@ -37,60 +37,69 @@ const navigation = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-gray-200 bg-gray-50">
-      <Container>
-        <div className="flex flex-col items-start gap-y-12 py-12">
-          <div className="flex flex-col-reverse sm:flex-row justify-between items-center w-full text-gray-900">
+    <footer className="border-t border-gray-200 bg-white">
+      <Container className="section-padding">
+        <div className="section-padding-y">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* OK Wildscapes logo and tag */}
-            <div className="flex items-center mt-12 sm:mt-0">
-              <Logomark className="h-10 w-10 flex-none fill-cyan-500" />
-              <div className="ml-4">
-                <p className="text-base font-semibold">Oklahoma Wildscapes</p>
-                <p className="mt-1 text-sm">Bring your outdoor space to life</p>
+            <div className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left">
+              <Logomark className="h-12 w-12 flex-none fill-okw-green mb-4 sm:mb-0" />
+              <div className="sm:ml-4">
+                <p className="text-lg font-bold text-gray-900">Oklahoma Wildscapes</p>
+                <p className="mt-1 text-base text-gray-600">Bring your outdoor space to life</p>
               </div>
             </div>
 
             {/* ONPN link */}
-            <div className="flex flex-col-reverse items-center text-sm">
-              <p className="max-w-60 pt-2 text-center">
+            <div className="flex flex-col items-center text-center lg:items-end lg:text-right">
+              <Link 
+                href="https://www.onpn.org/" 
+                target="_blank"
+                className="hover:opacity-80 transition-opacity duration-200 mb-4"
+              >
+                <Image
+                  src="/images/logos/onpn.png"
+                  width={80}
+                  height={240}
+                  alt="Oklahoma Native Plant Network logo"
+                  className="h-20 w-auto"
+                />
+              </Link>
+              <p className="max-w-xs text-sm text-gray-600 leading-relaxed">
                 We are a proud member of the Oklahoma Native Plant Network{' '}
                 <ExternalLink text="Learn more" href="https://www.onpn.org/" />
               </p>
-              <Link href="https://www.onpn.org/" target="_blank">
-                <Image
-                  src="/images/logos/onpn.png"
-                  width={100}
-                  height={300}
-                  alt="Oklahoma Native Plant Network logo"
-                />
-              </Link>
             </div>
           </div>
 
-          <nav className="flex gap-8">
-            <NavLinks />
+          <nav className="mt-12 pt-8 border-t border-gray-200">
+            <div className="flex flex-col sm:flex-row gap-6 sm:gap-8 justify-center">
+              <NavLinks />
+            </div>
           </nav>
         </div>
       </Container>
 
-      <div className="w-full border-t border-gray-200 bg-okw-green-light">
-        <div className="mx-auto max-w-7xl px-6 py-8 md:flex md:items-center md:justify-between lg:px-8">
-          <div className="flex justify-center space-x-6 md:order-2">
-            {navigation.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className="text-emerald-700 hover:text-gray-700"
-              >
-                <span className="sr-only">{item.name}</span>
-                <item.icon className="h-6 w-6" aria-hidden="true" />
-              </a>
-            ))}
-          </div>
-          <div className="mt-8 md:order-1 md:mt-0">
-            <p className="text-center text-xs leading-5 text-gray-700">
+      <div className="w-full border-t border-gray-200 bg-okw-green">
+        <div className="mx-auto max-w-7xl section-padding py-6">
+          <div className="flex flex-col-reverse sm:flex-row items-center justify-between gap-4">
+            <p className="text-center text-sm text-white/90">
               &copy; Copyright 2025. All rights reserved.
             </p>
+            <div className="flex justify-center space-x-6">
+              {navigation.map((item) => (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white/90 hover:text-white transition-colors duration-200 min-h-[44px] min-w-[44px] flex items-center justify-center"
+                >
+                  <span className="sr-only">{item.name}</span>
+                  <item.icon className="h-6 w-6" aria-hidden="true" />
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </div>
