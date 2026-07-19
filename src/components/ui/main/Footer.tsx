@@ -50,20 +50,40 @@ export function Footer() {
               </div>
             </div>
 
-            {/* ONPN link */}
-            <div className="flex flex-col-reverse items-center text-sm">
-              <p className="max-w-60 pt-2 text-center">
-                We are a proud member of the Oklahoma Native Plant Network{' '}
-                <ExternalLink text="Learn more" href="https://www.onpn.org/" />
-              </p>
-              <Link href="https://www.onpn.org/" target="_blank">
+            {/* Partner logos */}
+            <div className="flex flex-col sm:flex-row items-center gap-6">
+              {/* OMPC link */}
+              <Link
+                href="https://okmonarchsociety.org/action-plan/"
+                target="_blank"
+              >
                 <Image
-                  src="/images/logos/onpn.png"
-                  width={100}
-                  height={300}
-                  alt="Oklahoma Native Plant Network logo"
+                  className="h-auto w-28 sm:w-36 lg:w-40"
+                  src="/images/logos/OMPC-Partner-logo-no-background.png"
+                  width={160}
+                  height={168}
+                  alt="Proud partner of the Oklahoma Monarch & Pollinator Collaborative"
                 />
               </Link>
+
+              {/* ONPN link */}
+              <div className="flex flex-col-reverse items-center text-sm">
+                <p className="max-w-60 pt-2 text-center">
+                  We are a proud member of the Oklahoma Native Plant Network{' '}
+                  <ExternalLink
+                    text="Learn more"
+                    href="https://www.onpn.org/"
+                  />
+                </p>
+                <Link href="https://www.onpn.org/" target="_blank">
+                  <Image
+                    src="/images/logos/onpn.png"
+                    width={100}
+                    height={300}
+                    alt="Oklahoma Native Plant Network logo"
+                  />
+                </Link>
+              </div>
             </div>
           </div>
 
